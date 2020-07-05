@@ -1,3 +1,3 @@
 # Decentralized Identifiers
 
-## Data Model
+## [Data Model](/packages/did-core)
