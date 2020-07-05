@@ -1,0 +1,3 @@
+# Decentralized Identifiers
+
+## Data Model
