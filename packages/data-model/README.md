@@ -1,3 +1,1 @@
-# @transmute/did-cbor.js
-
-### Triquetra
+# @did-core/data-model
