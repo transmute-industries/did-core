@@ -1,8 +1,6 @@
 import { VerificationMethodOptions, VerificationMethodType } from './types';
-import { tags } from './cbor';
 const bs58 = require('bs58');
 const canonicalize = require('canonicalize');
-const cbor = require('cbor');
 
 export class VerificationMethod {
   public id: string;
@@ -14,21 +12,9 @@ export class VerificationMethod {
     return new VerificationMethod(VerificationMethod._getVmOptions(_options));
   }
 
-  static decodeOptionsFromCbor = (data: Buffer) => {
-    const tagged = cbor.decode(data);
-    return VerificationMethod.fromArray(tagged.value);
-  };
-
-  static fromArray = (data: Array<any>) => {
-    const [id, type, controller, publicKeyBuffer] = data;
-    return { id, type, controller, publicKeyBuffer };
-  };
-
-  private static _getVmOptions = (
-    options: VerificationMethodType
-  ): VerificationMethodOptions => {
-    if (Buffer.isBuffer(options)) {
-      return VerificationMethod.decodeOptionsFromCbor(options);
+  private static _getVmOptions = (options: any): VerificationMethodOptions => {
+    if (options.publicKeyBuffer) {
+      return options;
     }
     if (options.publicKeyBase58) {
       return {
@@ -36,7 +22,10 @@ export class VerificationMethod {
         publicKeyBuffer: bs58.decode(options.publicKeyBase58),
       };
     }
-    throw new Error('Unsupported VerificationMethodType.');
+
+    throw new Error(
+      'Unsupported VerificationMethodType.\n' + JSON.stringify(options, null, 2)
+    );
   };
 
   constructor(options: VerificationMethodOptions) {
@@ -44,21 +33,6 @@ export class VerificationMethod {
     this.type = options.type;
     this.controller = options.controller;
     this.publicKeyBuffer = options.publicKeyBuffer;
-  }
-
-  encodeCBOR(encoder: any) {
-    const tagged = new cbor.Tagged(tags.VerificationMethod, [
-      this.id,
-      this.type,
-      this.controller,
-      this.publicKeyBuffer,
-    ]);
-    return encoder.pushAny(tagged);
-  }
-
-  toCBOR() {
-    const encoded = cbor.encode(this);
-    return encoded;
   }
 
   toJSON(bufferEncoding: string = 'base58') {

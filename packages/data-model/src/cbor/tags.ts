@@ -1,2 +1,1 @@
-export const VerificationMethod = 430000029;
-export const DidDocument = 430000001;
+export const zlib_compressed_nquads = 430000029;

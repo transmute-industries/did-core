@@ -21,7 +21,7 @@
   "keyAgreement": [
     {
       "id": "#zCCmmqxU1hJoToBAGrz42Usx6WFpZdX3zUr5cQmjqEMeGZ",
-      "type": "X25519KeyAgreementKey2019",
+      "type": "did:X25519KeyAgreementKey2019",
       "controller": "did:key:z6MkrmcgCJzwoej6r2BUi9LweSQSj7BBr4EocW3oZsuZPoD1",
       "publicKeyBase58": "DH48bHCVw4BN57JQaZTWinRD1YkfxMNyxCKNvf2qFQAM"
     }

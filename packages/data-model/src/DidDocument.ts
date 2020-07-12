@@ -1,12 +1,7 @@
-import {
-  Context,
-  IDidOptions,
-  VerificationMethodCollectionType,
-} from './types';
+import { Context, VerificationMethodCollectionType } from './types';
 
 import { VerificationMethod } from './VerificationMethod';
-import { tags } from './cbor';
-const cbor = require('cbor');
+import { CborLdDocument } from './CborLdDocument';
 const canonicalize = require('canonicalize');
 
 const getVerificationMethods = (options: VerificationMethodCollectionType) => {
@@ -42,29 +37,6 @@ const verificationRelationships = [
   'keyAgreement',
 ];
 
-const getDidOptions = (options: any): IDidOptions => {
-  if (Buffer.isBuffer(options)) {
-    const tagged = cbor.decode(options, {
-      tags: {
-        [tags.VerificationMethod]: (val: any) => {
-          // check val to make sure it's an Array as expected, etc.
-          return JSON.parse(
-            new VerificationMethod(VerificationMethod.fromArray(val)).toJSON()
-          );
-        },
-      },
-    });
-    tagged.value['@context'] = enhanceContext(
-      tagged.value['@context'],
-      tagged.value.id
-    );
-
-    return tagged.value;
-  }
-
-  return options;
-};
-
 const enhanceContext = (context: any, did: string) => {
   const _context: any = [];
   if (typeof context === 'string') {
@@ -89,7 +61,7 @@ const enhanceContext = (context: any, did: string) => {
   return _context;
 };
 
-export class DidDocument {
+export class DidDocument extends CborLdDocument {
   public '@context': Context;
   public id: string;
   public publicKey?: VerificationMethodCollectionType;
@@ -100,30 +72,42 @@ export class DidDocument {
   public keyAgreement?: VerificationMethodCollectionType;
 
   static from(options: any) {
-    return new DidDocument(getDidOptions(options));
+    return new DidDocument({
+      ...options,
+      '@context': enhanceContext(options['@context'], options.id),
+    });
+  }
+
+  static async fromCBOR(data: Buffer, type: string = 'CBOR') {
+    const { document } = await CborLdDocument.fromCBOR(data, type);
+    return new DidDocument(document);
+  }
+
+  static _prettifyDDO(options: any) {
+    const ddo: any = {};
+    ddo['@context'] = enhanceContext(options['@context'], options.id);
+    ddo.id = options.id;
+
+    verificationRelationships.forEach((vr: string) => {
+      if (options[vr] && options[vr].length) {
+        ddo[vr] = options[vr];
+      }
+    });
+    return ddo;
   }
 
   constructor(options: any) {
-    this['@context'] = enhanceContext(options['@context'], options.id);
-    this.id = options.id;
-    let ddo: any = this;
+    super({
+      ...options,
+      '@context': enhanceContext(options['@context'], options.id),
+    });
+    this.id = this.document.id;
+    this['@context'] = this.document['@context'];
     verificationRelationships.forEach((vr: string) => {
       if (options[vr] && options[vr].length) {
-        ddo[vr] = getVerificationMethods(options[vr]);
+        (this as any)[vr] = getVerificationMethods(options[vr]);
       }
     });
-  }
-
-  encodeCBOR(encoder: any) {
-    const tagged = new cbor.Tagged(tags.DidDocument, {
-      ...this,
-    });
-    return encoder.pushAny(tagged);
-  }
-
-  toCBOR() {
-    const encoded = cbor.encode(this);
-    return encoded;
   }
 
   toJSON() {
@@ -131,16 +115,15 @@ export class DidDocument {
       '@context': this['@context'],
       id: this.id,
     };
-
     let ddo: any = this;
     verificationRelationships.forEach((vr: string) => {
       if (ddo[vr] && ddo[vr].length) {
         data[vr] = verificationMethodCollectionToJson(ddo[vr]);
       }
     });
-
     return canonicalize({
       ...data,
+      '@context': enhanceContext(data['@context'], data.id),
     });
   }
 }

@@ -23,7 +23,8 @@ export type VerificationMethodOptions = {
 
 export type VerificationMethodType =
   | Ed25519VerificationKey2018
-  | X25519KeyAgreementKey2019;
+  | X25519KeyAgreementKey2019
+  | VerificationMethodOptions;
 
 export type VerificationMethodCollectionType = Array<
   VerificationMethodType | string
