@@ -21,6 +21,42 @@ const didDocAsJson: string = didDoc.toJSON(); // always includes an `@context`..
 // NOTE that JSON.stringify does not produce cannonical representations of JSON...
 ```
 
+#### Compact Representations
+
+Internally uses relative URIs, JSON-LD, and Buffers consistently.
+
+```
+DidDocument {
+    id: 'did:key:z6MkrmcgCJzwoej6r2BUi9LweSQSj7BBr4EocW3oZsuZPoD1',
+    '@context': [
+    'https://w3id.org/did/v0.11',
+    {
+        '@base': 'did:key:z6MkrmcgCJzwoej6r2BUi9LweSQSj7BBr4EocW3oZsuZPoD1'
+    }
+    ],
+    publicKey: [
+    VerificationMethod {
+        id: '#z6MkrmcgCJzwoej6r2BUi9LweSQSj7BBr4EocW3oZsuZPoD1',
+        type: 'Ed25519VerificationKey2018',
+        controller: 'did:key:z6MkrmcgCJzwoej6r2BUi9LweSQSj7BBr4EocW3oZsuZPoD1',
+        publicKeyBuffer: <Buffer b7 00 06 7d 92 bc af ed 2e 51 9b 93 38 91 72 58 20 13 00 de 8e f3 36 17 82 52 b0 07 04 38 5b a0>
+    }
+    ],
+    authentication: [ '#z6MkrmcgCJzwoej6r2BUi9LweSQSj7BBr4EocW3oZsuZPoD1' ],
+    assertionMethod: [ '#z6MkrmcgCJzwoej6r2BUi9LweSQSj7BBr4EocW3oZsuZPoD1' ],
+    capabilityDelegation: [ '#z6MkrmcgCJzwoej6r2BUi9LweSQSj7BBr4EocW3oZsuZPoD1' ],
+    capabilityInvocation: [ '#z6MkrmcgCJzwoej6r2BUi9LweSQSj7BBr4EocW3oZsuZPoD1' ],
+    keyAgreement: [
+    VerificationMethod {
+        id: '#zCCmmqxU1hJoToBAGrz42Usx6WFpZdX3zUr5cQmjqEMeGZ',
+        type: 'did:X25519KeyAgreementKey2019',
+        controller: 'did:key:z6MkrmcgCJzwoej6r2BUi9LweSQSj7BBr4EocW3oZsuZPoD1',
+        publicKeyBuffer: <Buffer b6 69 13 7f 1d 9e c1 4a 6b 14 66 fb 0a 54 cd 2e ec 77 43 ec 67 c1 81 c2 ee 66 d0 26 79 09 0e 2a>
+    }
+    ]
+}
+```
+
 ## Representations
 
 This module supports the [did core](https://www.w3.org/TR/did-core/) data model.

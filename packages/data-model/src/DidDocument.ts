@@ -42,26 +42,26 @@ const enhanceContext = (context: any, did: string) => {
   if (typeof context === 'string') {
     _context.push(context);
   }
-  let flagUsingRelative = false;
+
   if (Array.isArray(context)) {
     context.forEach((c: any) => {
       if (typeof c === 'string') {
         _context.push(c);
       }
-      if (typeof c === 'object' && c['@base'] && c['@base'] === did) {
-        flagUsingRelative = true;
-      }
     });
-    if (!flagUsingRelative) {
-      _context.push({
-        '@base': did,
-      });
-    }
   }
+  if (typeof _context[_context.length - 1] !== 'object') {
+    _context.push({
+      '@base': did,
+    });
+  }
+
+  // console.log({ _context });
   return _context;
 };
 
-export class DidDocument extends CborLdDocument {
+// TODO: no inheritance, use DI instead...
+export class DidDocument {
   public '@context': Context;
   public id: string;
   public publicKey?: VerificationMethodCollectionType;
@@ -79,7 +79,7 @@ export class DidDocument extends CborLdDocument {
   }
 
   static async fromCBOR(data: Buffer, type: string = 'CBOR') {
-    const { document } = await CborLdDocument.fromCBOR(data, type);
+    const document = await CborLdDocument.fromCBOR(data, type);
     return new DidDocument(document);
   }
 
@@ -87,7 +87,6 @@ export class DidDocument extends CborLdDocument {
     const ddo: any = {};
     ddo['@context'] = enhanceContext(options['@context'], options.id);
     ddo.id = options.id;
-
     verificationRelationships.forEach((vr: string) => {
       if (options[vr] && options[vr].length) {
         ddo[vr] = options[vr];
@@ -97,12 +96,12 @@ export class DidDocument extends CborLdDocument {
   }
 
   constructor(options: any) {
-    super({
+    let enhancedOptions = {
       ...options,
       '@context': enhanceContext(options['@context'], options.id),
-    });
-    this.id = this.document.id;
-    this['@context'] = this.document['@context'];
+    };
+    this.id = enhancedOptions.id;
+    this['@context'] = enhancedOptions['@context'];
     verificationRelationships.forEach((vr: string) => {
       if (options[vr] && options[vr].length) {
         (this as any)[vr] = getVerificationMethods(options[vr]);
@@ -112,18 +111,23 @@ export class DidDocument extends CborLdDocument {
 
   toJSON() {
     const data: any = {
-      '@context': this['@context'],
+      '@context': enhanceContext(this['@context'], this.id),
       id: this.id,
     };
-    let ddo: any = this;
+
     verificationRelationships.forEach((vr: string) => {
-      if (ddo[vr] && ddo[vr].length) {
-        data[vr] = verificationMethodCollectionToJson(ddo[vr]);
+      if ((this as any)[vr] && (this as any)[vr].length) {
+        data[vr] = verificationMethodCollectionToJson((this as any)[vr]);
       }
     });
+
     return canonicalize({
       ...data,
-      '@context': enhanceContext(data['@context'], data.id),
     });
+  }
+
+  toCBOR(type: string = 'CBOR') {
+    const asJson = JSON.parse(this.toJSON());
+    return CborLdDocument.toCBOR(asJson, type);
   }
 }
