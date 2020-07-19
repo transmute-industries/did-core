@@ -19,6 +19,11 @@ const didDocAsJson: string = didDoc.toJSON(); // always includes an `@context`..
 // delete didDocObject['@context'];
 // const pureJson = JSON.stringify(didDocObject);
 // NOTE that JSON.stringify does not produce cannonical representations of JSON...
+
+// If you do support linked data, this compressed CBOR representation is the smallest currently supported CBOR representation.
+const didDocAsCompressedLinkedData: Buffer = didDoc.toCBOR(
+  'ZLIB_URDNA2015_CBOR'
+);
 ```
 
 #### Compact Representations
@@ -61,7 +66,9 @@ DidDocument {
 
 This module supports the [did core](https://www.w3.org/TR/did-core/) data model.
 
-All representations rely on a [simple registration table for terms](./did-core-v1.csv)... but beware that CBOR tags are not actually registered.
+This module supports multiple non standard CBOR representations, you can compare them vs JSON here:
+
+- [decentralized-cbor](https://github.com/transmute-industries/decentralized-cbor/blob/master/src/__fixtures__/outputs/table.csv)
 
 ### JSON-LD
 
