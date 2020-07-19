@@ -1,5 +1,7 @@
 # @did-core/data-model
 
+![Data Model](https://github.com/transmute-industries/did-core/workflows/Data%20Model/badge.svg)
+
 ```
 npm i @did-core/data-model --save
 ```
@@ -20,7 +22,8 @@ const didDocAsJson: string = didDoc.toJSON(); // always includes an `@context`..
 // const pureJson = JSON.stringify(didDocObject);
 // NOTE that JSON.stringify does not produce cannonical representations of JSON...
 
-// If you do support linked data, this compressed CBOR representation is the smallest currently supported CBOR representation.
+// If you do support linked data, this compressed CBOR
+// representation is the smallest currently supported CBOR representation.
 const didDocAsCompressedLinkedData: Buffer = didDoc.toCBOR(
   'ZLIB_URDNA2015_CBOR'
 );
