@@ -8,6 +8,7 @@
     "lerna": "^3.22.1"
   },
   "dependencies": {
+    "@transmute/decentralized-cbor": "^0.1.0",
     "pako": "^1.0.11"
   }
 }

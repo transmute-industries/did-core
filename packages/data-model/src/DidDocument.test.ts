@@ -23,10 +23,10 @@ it('DAG_CBOR to/from', async () => {
   expect(JSON.parse(d1.toJSON())).toEqual(fixtures.didDocs.didKey1);
 });
 
-it('CBOR_ZLIB_URDNA2015 to/from', async () => {
+it('ZLIB_URDNA2015_CBOR to/from', async () => {
   const b = new DidDocument(fixtures.didDocs.didKey0);
-  const d: any = await b.toCBOR('CBOR_ZLIB_URDNA2015');
+  const d: any = await b.toCBOR('ZLIB_URDNA2015_CBOR');
   expect(d.length).toBe(529);
-  const d1 = await DidDocument.fromCBOR(d, 'CBOR_ZLIB_URDNA2015');
+  const d1 = await DidDocument.fromCBOR(d, 'ZLIB_URDNA2015_CBOR');
   expect(JSON.parse(d1.toJSON())).toEqual(fixtures.didDocs.didKey1);
 });

@@ -1,7 +1,10 @@
+import { CBOR } from '@transmute/decentralized-cbor';
 import { Context, VerificationMethodCollectionType } from './types';
 
 import { VerificationMethod } from './VerificationMethod';
-import { CborLdDocument } from './CborLdDocument';
+
+import { documentLoader } from './documentLoader';
+
 const canonicalize = require('canonicalize');
 
 const getVerificationMethods = (options: VerificationMethodCollectionType) => {
@@ -79,7 +82,7 @@ export class DidDocument {
   }
 
   static async fromCBOR(data: Buffer, type: string = 'CBOR') {
-    const document = await CborLdDocument.fromCBOR(data, type);
+    const document = await CBOR.fromCBOR(data, type, documentLoader);
     return new DidDocument(document);
   }
 
@@ -128,6 +131,6 @@ export class DidDocument {
 
   toCBOR(type: string = 'CBOR') {
     const asJson = JSON.parse(this.toJSON());
-    return CborLdDocument.toCBOR(asJson, type);
+    return CBOR.toCBOR(asJson, type, documentLoader);
   }
 }
