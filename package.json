@@ -2,13 +2,10 @@
   "name": "root",
   "private": true,
   "scripts": {
+    "postinstall": "lerna bootstrap",
     "shove": "git add -A; git commit -m 'chore: ci'; git push origin master"
   },
   "devDependencies": {
     "lerna": "^3.22.1"
-  },
-  "dependencies": {
-    "@transmute/decentralized-cbor": "^0.1.0",
-    "pako": "^1.0.11"
   }
 }
