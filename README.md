@@ -6,6 +6,8 @@ These modules are agnostic to [DID Methods](https://www.w3.org/TR/did-core/#dfn-
 
 ## [Data Model](https://github.com/transmute-industries/did-core/tree/master/packages/data-model)
 
+![Data Model](https://github.com/transmute-industries/did-core/workflows/Data%20Model/badge.svg)
+
 JSON-LD, CBOR and JSON representation support for [did core](https://www.w3.org/TR/did-core/).
 
 ## License
