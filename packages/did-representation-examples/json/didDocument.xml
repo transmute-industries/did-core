@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<didDocument>
+    <id>
+        did:example:123
+    </id>
+    <verificationMethod>
+        <id>
+            #key-0
+        </id>
+        <type>
+            JsonWebKey2020
+        </type>
+        <controller>
+            did:example:123
+        </controller>
+        <publicKeyJwk>
+            <kty>
+                EC
+            </kty>
+            <crv>
+                P-256
+            </crv>
+            <x>
+                iCsUt8CcUFRnm-5TAVLw6XxmTmUXwVLY_300nxguIPM
+            </x>
+            <y>
+                9ZfGdDmvXvTXpBpbKGw_Rt86whDN9y3TMfgtJAOlV38
+            </y>
+        </publicKeyJwk>
+    </verificationMethod>
+</didDocument>

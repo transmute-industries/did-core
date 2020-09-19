@@ -1,0 +1,9 @@
+@context,https://www.w3.org/ns/did/v1
+id,did:example:123
+verificationMethod.id,#key-0
+verificationMethod.type,JsonWebKey2020
+verificationMethod.controller,did:example:123
+verificationMethod.publicKeyJwk.kty,EC
+verificationMethod.publicKeyJwk.crv,P-256
+verificationMethod.publicKeyJwk.x,iCsUt8CcUFRnm-5TAVLw6XxmTmUXwVLY_300nxguIPM
+verificationMethod.publicKeyJwk.y,9ZfGdDmvXvTXpBpbKGw_Rt86whDN9y3TMfgtJAOlV38
