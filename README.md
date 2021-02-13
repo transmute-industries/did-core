@@ -1,5 +1,7 @@
 # Decentralized Identifiers
 
+![CI](https://github.com/transmute-industries/did-core/workflows/CI/badge.svg) ![CD](https://github.com/transmute-industries/did-core/workflows/CD/badge.svg)
+
 TypeScript implementations of [did core](https://www.w3.org/TR/did-core/) and related utilities.
 
 These modules are agnostic to [DID Methods](https://www.w3.org/TR/did-core/#dfn-did-methods).
