@@ -17,7 +17,7 @@ const didDocument: DidDocument = factory.build({
   },
 });
 
-const representation: string = await didDocument
+const representation: Buffer = await didDocument
   .addRepresentation({ 'application/did+ld+json': representation })
   .produce('application/did+ld+json');
 ```
@@ -57,7 +57,7 @@ const didDocument: DidDocument = factory.build({
   },
 });
 
-const representation: string = await didDocument
+const representation: Buffer = await didDocument
   .addRepresentation({ 'application/did+json': representation })
   .produce('application/did+json');
 ```
