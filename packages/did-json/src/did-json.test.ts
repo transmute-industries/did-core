@@ -12,7 +12,7 @@ it('can produce application/did+json', async () => {
   });
   didDocument.addRepresentation({ 'application/did+json': representation });
   const serialization = await didDocument.produce('application/did+json');
-  expect(serialization).toEqual(JSON.stringify(jsonFixtures.example1, null, 2));
+  expect(JSON.parse(serialization.toString())).toEqual(jsonFixtures.example1);
 });
 
 it('can consume application/did+json', async () => {
@@ -20,7 +20,7 @@ it('can consume application/did+json', async () => {
   didDocument.addRepresentation({ 'application/did+json': representation });
   await didDocument.consume(
     'application/did+json',
-    Buffer.from(JSON.stringify(jsonFixtures.example1, null, 2))
+    Buffer.from(JSON.stringify(jsonFixtures.example1))
   );
   expect((didDocument.entries as any).id).toBe('did:example:123');
 });
@@ -28,17 +28,14 @@ it('can consume application/did+json', async () => {
 it('cannot produce application/did+json with __proto__ entries', async () => {
   const didDocument = factory.build();
   didDocument.addRepresentation({ 'application/did+json': representation });
-  await didDocument.consume(
-    'application/did+json',
-    Buffer.from(
-      `{"id": "did:example:123","__proto__":{"isAdmin": "Let json be json!"}}`
-    )
-  );
-  didDocument.assign({ 'this is safe': 'right guys...?' });
-  const serialization = await didDocument.produce('application/did+json');
-  expect(JSON.parse(serialization.toString())).toEqual({
-    id: 'did:example:123',
-    'this is safe': 'right guys...?',
-  });
-  expect((didDocument.entries as any).isAdmin).toBe(undefined);
+  try {
+    await didDocument.consume(
+      'application/did+json',
+      Buffer.from(
+        `{"id": "did:example:123","__proto__":{"isAdmin": "Let json be json!"}}`
+      )
+    );
+  } catch (e) {
+    expect(e.message).toBe('Unsafe json detected.');
+  }
 });
