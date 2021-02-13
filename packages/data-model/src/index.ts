@@ -1,2 +1,2 @@
-export * from './DidDocument';
-export * from './VerificationMethod';
+export * from './types';
+export * from './factory';

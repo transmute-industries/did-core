@@ -4,26 +4,60 @@ TypeScript implementations of [did core](https://www.w3.org/TR/did-core/) and re
 
 These modules are agnostic to [DID Methods](https://www.w3.org/TR/did-core/#dfn-did-methods).
 
-## [Data Model](https://github.com/transmute-industries/did-core/tree/master/packages/data-model)
+## Usage with Verifiable Credentials
 
-![Data Model](https://github.com/transmute-industries/did-core/workflows/Data%20Model/badge.svg)
+```ts
+import { factory, DidDocument } from '@did-core/data-model';
+import { representation } from '@did-core/did-ld-json';
 
-JSON-LD, CBOR and JSON representation support for [did core](https://www.w3.org/TR/did-core/).
+const didDocument: DidDocument = factory.build({
+  entries: {
+    '@context': 'https://www.w3.org/ns/did/v1',
+    id: 'did:example:123',
+  },
+});
 
-## License
-
+const representation: Buffer = await didDocument
+  .addRepresentation({ 'application/did+ld+json': representation })
+  .produce('application/did+ld+json');
 ```
-Copyright 2020 Transmute Industries Inc.
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+## Usage with IPLD
 
-    http://www.apache.org/licenses/LICENSE-2.0
+```ts
+import { factory, DidDocument } from '@did-core/data-model';
+import { representation } from '@did-core/did-dag-cbor';
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+const didDocument: DidDocument = factory.build({
+  entries: {
+    // @context is required for use with jsonld verifiable credentials
+    // but technically optional here
+    '@context': 'https://www.w3.org/ns/did/v1',
+    id: 'did:example:123',
+  },
+});
+
+const representation: Buffer = await didDocument
+  .addRepresentation({ 'application/did+dag+cbor': representation })
+  .produce('application/did+dag+cbor');
+```
+
+## Usage with JOSE
+
+```ts
+import { factory, DidDocument } from '@did-core/data-model';
+import { representation } from '@did-core/did-json';
+
+const didDocument: DidDocument = factory.build({
+  entries: {
+    // @context is required for use with jsonld verifiable credentials
+    // but technically optional here
+    '@context': 'https://www.w3.org/ns/did/v1',
+    id: 'did:example:123',
+  },
+});
+
+const representation: Buffer = await didDocument
+  .addRepresentation({ 'application/did+json': representation })
+  .produce('application/did+json');
 ```

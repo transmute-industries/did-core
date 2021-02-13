@@ -1,0 +1,17 @@
+{
+  "id": "did:example:123",
+  "verificationMethod": [
+    {
+      "id": "#signing-key",
+      "type": "Ed25519VerificationKey2018",
+      "publicKeyBase58": "..."
+    }
+  ],
+  "service": [
+    {
+      "id": "#foo",
+      "type": "BarService",
+      "serviceEndpoint": "https://example.com/789"
+    }
+  ]
+}
