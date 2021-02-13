@@ -1,16 +1,16 @@
 {
-  "name": "@did-core/data-model",
+  "name": "@did-core/did-yaml",
   "author": "Orie Steele",
-  "module": "dist/data-model.esm.js",
+  "module": "dist/did-yaml.esm.js",
   "version": "0.1.0",
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "homepage": "https://github.com/transmute-industries/did-core/tree/master/packages/data-model",
+  "homepage": "https://github.com/transmute-industries/did-core/tree/master/packages/did-yaml",
   "repository": {
     "type": "git",
     "url": "https://github.com/transmute-industries/did-core.git",
-    "directory": "packages/data-model"
+    "directory": "packages/did-yaml"
   },
   "scripts": {
     "start": "tsdx watch",
@@ -27,7 +27,9 @@
     "size-limit": "^4.9.2",
     "tsdx": "^0.14.1",
     "tslib": "^2.1.0",
-    "typescript": "^3.9.9"
+    "typescript": "^3.9.9",
+    "factory.ts": "^0.5.1",
+    "@did-core/data-model": "0.1.0"
   },
   "publishConfig": {
     "access": "public"
@@ -41,18 +43,13 @@
   },
   "size-limit": [
     {
-      "path": "dist/data-model.cjs.production.min.js",
+      "path": "dist/did-yaml.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/data-model.esm.js",
+      "path": "dist/did-yaml.esm.js",
       "limit": "10 KB"
     }
   ],
-  "dependencies": {
-    "cbor": "^7.0.0",
-    "factory.ts": "^0.5.1",
-    "js-yaml": "^3.14.1",
-    "jsonld-checker": "^0.1.6"
-  }
+  "dependencies": {}
 }
