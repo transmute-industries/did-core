@@ -1,27 +1,8 @@
-import { representations } from './representations';
-
 import { factory } from './factory';
 
-const example1 = {
-  id: 'did:example:123',
-};
+import { json } from './__fixtures__';
 
-const example2 = {
-  verificationMethod: [
-    {
-      id: '#signing-key',
-      type: 'Ed25519VerificationKey2018',
-      publicKeyBase58: '...',
-    },
-  ],
-  service: [
-    {
-      id: '#foo',
-      type: 'BarService',
-      serviceEndpoint: 'https://example.com/789',
-    },
-  ],
-};
+const { example1, example2 } = json;
 
 it('can build a didDocument with defaults', async () => {
   const didDocument = factory.build({
@@ -56,19 +37,6 @@ it('throws when asked to produce an unsupported representation', async () => {
   }
 });
 
-it('can produce application/did+json', async () => {
-  const didDocument = factory.build({
-    entries: {
-      ...example1,
-    },
-  });
-  didDocument.addRepresentation(representations);
-  const serialization = didDocument.produce('application/did+json');
-  expect(serialization).toBe(`{
-  "id": "did:example:123"
-}`);
-});
-
 it('throws when asked to consume an unsupported representation', async () => {
   expect.assertions(1);
   const didDocument = factory.build({
@@ -86,14 +54,4 @@ it('throws when asked to consume an unsupported representation', async () => {
       'Cannot consume unsupported content type: application/did+json'
     );
   }
-});
-
-it('can consume application/did+json', async () => {
-  let didDocument = factory.build();
-  didDocument.addRepresentation(representations);
-  didDocument.consume(
-    'application/did+json',
-    Buffer.from(`{"id": "did:example:123"}`)
-  );
-  expect((didDocument.entries as any).id).toBe('did:example:123');
 });
