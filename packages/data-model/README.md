@@ -16,7 +16,11 @@ const didDocument = factory.build({
     id: 'did:example:123',
   },
 });
+```
 
+## For use with Verifiable Credentials
+
+```ts
 // Add support for production and consumption for the JSON-LD Representation
 didDocument.addRepresentation({ 'application/did+ld+json': representation });
 
@@ -101,18 +105,20 @@ expect(serialization.toString('hex')).toBe(
 import { factory } from '@did-core/data-model';
 import { representation } from '@did-core/did-json';
 
-const didDocument = factory.build();
-didDocument.addRepresentation({ 'application/did+json': representation });
-
-// be careful what you consume!
-await didDocument.consume(
-  'application/did+json',
-  Buffer.from(
-    `{"id": "did:example:123","__proto__":{"isAdmin": "Let json be json!"}}`
-  )
-);
-didDocument.assign({ 'this is safe': 'right guys...?' });
-const serialization = await didDocument.produce('application/did+json');
+const didDocument = await factory
+  .build()
+  .addRepresentation({ 'application/did+json': representation })
+  .consume(
+    'application/did+json',
+    // be careful what you consume!
+    Buffer.from(
+      `{"id": "did:example:123","__proto__":{"isAdmin": "Let json be json!"}}`
+    )
+  );
+const serialization = await didDocument
+  // be careful what you assign!
+  .assign({ 'this is safe': 'right guys...?' })
+  .produce('application/did+json');
 
 // JSON only requires `id` be present...
 expect(JSON.parse(serialization.toString())).toEqual({

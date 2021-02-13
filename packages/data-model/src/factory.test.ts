@@ -1,23 +1,20 @@
 import { factory } from './factory';
 
-import { json } from './__fixtures__';
-
-const { example1, example2 } = json;
-
 it('can build a didDocument with defaults', async () => {
   const didDocument = factory.build({
     entries: {
-      ...example1,
+      id: 'did:example:123',
     },
   });
   expect(Object.keys(didDocument.entries).length).toBe(1);
 });
 
 it('can add entries to a didDocument', async () => {
-  const didDocument = factory.build();
-  didDocument.assign(example1);
+  const didDocument = factory.build().assign({
+    id: 'did:example:123',
+  });
   expect(Object.keys(didDocument.entries).length).toBe(1);
-  didDocument.assign(example2);
+  didDocument.assign({ foo: 'bar', baz: 1 });
   expect(Object.keys(didDocument.entries).length).toBe(3);
 });
 
@@ -25,7 +22,7 @@ it('throws when asked to produce an unsupported representation', async () => {
   expect.assertions(1);
   const didDocument = factory.build({
     entries: {
-      ...example1,
+      id: 'did:example:123',
     },
   });
   try {
@@ -41,7 +38,7 @@ it('throws when asked to consume an unsupported representation', async () => {
   expect.assertions(1);
   const didDocument = factory.build({
     entries: {
-      ...example1,
+      id: 'did:example:123',
     },
   });
   try {

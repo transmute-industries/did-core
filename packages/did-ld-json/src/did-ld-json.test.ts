@@ -2,7 +2,7 @@ import { factory } from '@did-core/data-model';
 
 import { representation } from './did-ld-json';
 
-import { json as jsonFixtures, jsonld as jsonldFixtures } from './__fixtures__';
+import { jsonld as jsonldFixtures } from './__fixtures__';
 
 const representations = { 'application/did+ld+json': representation };
 
@@ -19,11 +19,13 @@ it('can produce application/did+ld+json', async () => {
 });
 
 it('can consume application/did+ld+json', async () => {
-  let didDocument = factory.build().addRepresentation(representations);
-  await didDocument.consume(
-    'application/did+ld+json',
-    Buffer.from(JSON.stringify(jsonldFixtures.example1, null, 2))
-  );
+  let didDocument = await factory
+    .build()
+    .addRepresentation(representations)
+    .consume(
+      'application/did+ld+json',
+      Buffer.from(JSON.stringify(jsonldFixtures.example1, null, 2))
+    );
   expect((didDocument.entries as any).id).toBe('did:example:123');
 });
 
@@ -32,7 +34,7 @@ it('cannot produce application/did+ld+json from application/did+json', async () 
   const didDocument = factory
     .build({
       entries: {
-        ...jsonFixtures.example1,
+        id: 'did:example:123',
       },
     })
     .addRepresentation(representations);
@@ -47,7 +49,7 @@ it('can produce application/did+ld+json from application/did+json after adding @
   const didDocument = factory
     .build({
       entries: {
-        ...jsonFixtures.example1,
+        id: 'did:example:123',
       },
     })
     .addRepresentation(representations)
@@ -64,7 +66,8 @@ it('cannot produce application/did+ld+json from entries not defined in the conte
   const didDocument = factory
     .build({
       entries: {
-        ...jsonldFixtures.example1,
+        '@context': ['https://www.w3.org/ns/did/v1'],
+        id: 'did:example:123',
       },
     })
     .addRepresentation(representations)

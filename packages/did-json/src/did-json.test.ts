@@ -26,8 +26,9 @@ it('can consume application/did+json', async () => {
 });
 
 it('cannot produce application/did+json with __proto__ entries', async () => {
-  const didDocument = factory.build();
-  didDocument.addRepresentation({ 'application/did+json': representation });
+  const didDocument = factory
+    .build()
+    .addRepresentation({ 'application/did+json': representation });
   try {
     await didDocument.consume(
       'application/did+json',
@@ -38,4 +39,19 @@ it('cannot produce application/did+json with __proto__ entries', async () => {
   } catch (e) {
     expect(e.message).toBe('Unsafe json detected.');
   }
+});
+
+it('chaining example', async () => {
+  const didDocument = await factory
+    .build()
+    .addRepresentation({ 'application/did+json': representation })
+    .consume('application/did+json', Buffer.from(`{"id": "did:example:123"}`));
+  // be careful what you asssign!
+  const serialization = await didDocument
+    .assign({ alg: 'none' })
+    .produce('application/did+json');
+  expect(JSON.parse(serialization.toString())).toEqual({
+    id: 'did:example:123',
+    alg: 'none',
+  });
 });
