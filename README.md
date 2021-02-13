@@ -40,14 +40,15 @@ expect(JSON.parse(serialization.toString())).toEqual({
 });
 
 // What about unregistered properties?
-const didDocument = factory.build({
-  entries: {
-    '@context': ['https://www.w3.org/ns/did/v1'],
-    id: 'did:example:123',
-    '🔥': '💩',
-  },
-});
-didDocument.addRepresentation({ 'application/did+ld+json': representation });
+const didDocument = factory
+  .build({
+    entries: {
+      '@context': ['https://www.w3.org/ns/did/v1'],
+      id: 'did:example:123',
+      '🔥': '💩',
+    },
+  })
+  .addRepresentation({ 'application/did+ld+json': representation });
 
 // JSON-LD Production fails when `@context` does not define all properties
 try {

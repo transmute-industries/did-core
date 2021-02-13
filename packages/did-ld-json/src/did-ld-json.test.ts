@@ -7,19 +7,19 @@ import { json as jsonFixtures, jsonld as jsonldFixtures } from './__fixtures__';
 const representations = { 'application/did+ld+json': representation };
 
 it('can produce application/did+ld+json', async () => {
-  const didDocument = factory.build({
-    entries: {
-      ...jsonldFixtures.example1,
-    },
-  });
-  didDocument.addRepresentation(representations);
-  const serialization = await didDocument.produce('application/did+ld+json');
+  const serialization = await factory
+    .build({
+      entries: {
+        ...jsonldFixtures.example1,
+      },
+    })
+    .addRepresentation(representations)
+    .produce('application/did+ld+json');
   expect(JSON.parse(serialization.toString())).toEqual(jsonldFixtures.example1);
 });
 
 it('can consume application/did+ld+json', async () => {
-  let didDocument = factory.build();
-  didDocument.addRepresentation(representations);
+  let didDocument = factory.build().addRepresentation(representations);
   await didDocument.consume(
     'application/did+ld+json',
     Buffer.from(JSON.stringify(jsonldFixtures.example1, null, 2))
@@ -29,12 +29,13 @@ it('can consume application/did+ld+json', async () => {
 
 it('cannot produce application/did+ld+json from application/did+json', async () => {
   expect.assertions(1);
-  const didDocument = factory.build({
-    entries: {
-      ...jsonFixtures.example1,
-    },
-  });
-  didDocument.addRepresentation(representations);
+  const didDocument = factory
+    .build({
+      entries: {
+        ...jsonFixtures.example1,
+      },
+    })
+    .addRepresentation(representations);
   try {
     await didDocument.produce('application/did+ld+json');
   } catch (e) {
@@ -43,15 +44,16 @@ it('cannot produce application/did+ld+json from application/did+json', async () 
 });
 
 it('can produce application/did+ld+json from application/did+json after adding @context', async () => {
-  const didDocument = factory.build({
-    entries: {
-      ...jsonFixtures.example1,
-    },
-  });
-  didDocument.addRepresentation(representations);
-  didDocument.assign({
-    '@context': 'https://www.w3.org/ns/did/v1',
-  });
+  const didDocument = factory
+    .build({
+      entries: {
+        ...jsonFixtures.example1,
+      },
+    })
+    .addRepresentation(representations)
+    .assign({
+      '@context': 'https://www.w3.org/ns/did/v1',
+    });
   const serialization = await didDocument.produce('application/did+ld+json');
   // not the map order does not matter
   expect(JSON.parse(serialization.toString())).toEqual(jsonldFixtures.example1);
@@ -59,15 +61,16 @@ it('can produce application/did+ld+json from application/did+json after adding @
 
 it('cannot produce application/did+ld+json from entries not defined in the context', async () => {
   expect.assertions(1);
-  const didDocument = factory.build({
-    entries: {
-      ...jsonldFixtures.example1,
-    },
-  });
-  didDocument.addRepresentation(representations);
-  didDocument.assign({
-    '🔥': '💩',
-  });
+  const didDocument = factory
+    .build({
+      entries: {
+        ...jsonldFixtures.example1,
+      },
+    })
+    .addRepresentation(representations)
+    .assign({
+      '🔥': '💩',
+    });
   try {
     await didDocument.produce('application/did+ld+json');
   } catch (e) {
@@ -77,23 +80,19 @@ it('cannot produce application/did+ld+json from entries not defined in the conte
 
 it('can produce application/did+ld+json from entries defined in context', async () => {
   expect.assertions(1);
-  const didDocument = factory.build({
-    entries: {
-      ...jsonldFixtures.example1,
-    },
-  });
-  didDocument.addRepresentation(representations);
-  didDocument.assign({
-    '🔥': '💩',
-  });
-  didDocument.assign({
-    '@context': [
-      'https://www.w3.org/ns/did/v1',
-      {
-        '🔥': 'https://en.wikipedia.org/wiki/Open-world_assumption',
-      },
-    ],
-  });
-  const serialization = await didDocument.produce('application/did+ld+json');
+  const serialization = await factory
+    .build()
+    .addRepresentation(representations)
+    .assign({
+      '@context': [
+        'https://www.w3.org/ns/did/v1',
+        {
+          '🔥': 'https://en.wikipedia.org/wiki/Open-world_assumption',
+        },
+      ],
+      id: 'did:example:123',
+      '🔥': '💩',
+    })
+    .produce('application/did+ld+json');
   expect(JSON.parse(serialization.toString())).toEqual(jsonldFixtures.example3);
 });
