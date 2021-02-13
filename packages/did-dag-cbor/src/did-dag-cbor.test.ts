@@ -32,3 +32,12 @@ it('can produce example2 application/did+dag+cbor', async () => {
   const serialization = await didDocument.produce('application/did+dag+cbor');
   expect(serialization).toEqual(cborFixtures.example2);
 });
+
+it('can produce application/did+dag+cbor as hex', async () => {
+  const didDocument = factory.build({ entries: { id: 'did:example:123' } });
+  didDocument.addRepresentation(representations);
+  const serialization = await didDocument.produce('application/did+dag+cbor');
+  expect(serialization.toString('hex')).toBe(
+    'a16269646f6469643a6578616d706c653a313233'
+  );
+});

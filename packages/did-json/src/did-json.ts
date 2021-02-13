@@ -15,7 +15,8 @@ export const consumeJson: DidDocumentConsumer = async function(
   representation: Buffer
 ): Promise<AbstractDataModel<object>> {
   // TODO: security checks for sanitization
-  return JSON.parse(representation.toString());
+  const entries = JSON.parse(representation.toString());
+  return entries;
 };
 
 export const representation = {
