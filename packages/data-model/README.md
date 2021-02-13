@@ -7,11 +7,10 @@ npm i @did-core/data-model --save
 ## Usage
 
 ```ts
-import { factory } from '@did-core/data-model';
+import { factory, DidDocument } from '@did-core/data-model';
 import { representation } from '@did-core/did-ld-json';
 
-// An instance of the DID Core Abstract Data Model
-const didDocument = factory.build({
+const didDocument: DidDocument = factory.build({
   entries: {
     id: 'did:example:123',
   },
@@ -92,8 +91,11 @@ expect(JSON.parse(serialization.toString())).toEqual({
 import { factory } from '@did-core/data-model';
 import { representation } from '@did-core/did-dag-cbor';
 
-const didDocument = factory.build({ entries: { id: 'did:example:123' } });
-didDocument.addRepresentation({ 'application/did+dag+cbor': representation });
+const serialization = await factory
+  .build({ entries: { id: 'did:example:123' } })
+  .addRepresentation({ 'application/did+dag+cbor': representation })
+  .produce('application/did+dag+cbor');
+
 expect(serialization.toString('hex')).toBe(
   'a16269646f6469643a6578616d706c653a313233'
 );
