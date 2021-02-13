@@ -6,14 +6,14 @@ import {
 
 import yaml from 'js-yaml';
 
-export const produceYaml: DidDocumentProducer = async function(
+export const produceYaml: DidDocumentProducer = async function (
   entries: AbstractDataModel<object>
-): Promise<string> {
+): Promise<Buffer> {
   // TODO: security checks for sanitization
-  return yaml.dump(entries);
+  return Buffer.from(yaml.dump(entries));
 };
 
-export const consumeYaml: DidDocumentConsumer = async function(
+export const consumeYaml: DidDocumentConsumer = async function (
   representation: Buffer
 ): Promise<AbstractDataModel<object>> {
   // TODO: security checks for sanitization

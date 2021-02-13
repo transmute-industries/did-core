@@ -13,7 +13,7 @@ export interface DidDocument {
   representations: DidDocumentRepresentations;
   entries: AbstractDataModel<object>;
   assign: (entries: AbstractDataModel<object>) => DidDocument;
-  produce: (contentType: string) => Promise<string | Buffer>;
+  produce: (contentType: string) => Promise<Buffer>;
   consume: (
     contentType: string,
     representation: Buffer
@@ -40,7 +40,7 @@ export const factoryDefaults: DidDocument = {
     return this;
   },
 
-  produce: async function(contentType: string): Promise<string | Buffer> {
+  produce: async function(contentType: string): Promise<Buffer> {
     if (this.representations[contentType]) {
       return this.representations[contentType].produce(this.entries);
     }

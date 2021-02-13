@@ -11,7 +11,7 @@ it('can produce application/did+yaml', async () => {
   });
   didDocument.addRepresentation({ 'application/did+yaml': representation });
   const serialization = await didDocument.produce('application/did+yaml');
-  expect(serialization).toEqual(yamlFixtures.example0);
+  expect(serialization.toString()).toEqual(yamlFixtures.example0);
 });
 
 it('can consume application/did+yaml', async () => {
@@ -32,5 +32,5 @@ it('can produce example2 application/did+yaml', async () => {
   });
   didDocument.addRepresentation({ 'application/did+yaml': representation });
   const serialization = await didDocument.produce('application/did+yaml');
-  expect(serialization).toEqual(yamlFixtures.example2);
+  expect(serialization.toString()).toEqual(yamlFixtures.example2);
 });
