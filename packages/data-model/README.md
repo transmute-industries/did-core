@@ -17,7 +17,7 @@ const didDocument = factory.build({
   },
 });
 
-// Add support for producitona and consumption for the JSON-LD Representation
+// Add support for production and consumption for the JSON-LD Representation
 didDocument.addRepresentation({ 'application/did+ld+json': representation });
 
 // JSON-LD requires `@context` and that all terms be defined by it.

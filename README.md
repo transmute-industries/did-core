@@ -4,26 +4,78 @@ TypeScript implementations of [did core](https://www.w3.org/TR/did-core/) and re
 
 These modules are agnostic to [DID Methods](https://www.w3.org/TR/did-core/#dfn-did-methods).
 
-## [Data Model](https://github.com/transmute-industries/did-core/tree/master/packages/data-model)
+## Usage
 
-![Data Model](https://github.com/transmute-industries/did-core/workflows/Data%20Model/badge.svg)
+```ts
+import { factory } from '@did-core/data-model';
+import { representation } from '@did-core/did-ld-json';
 
-JSON-LD, CBOR and JSON representation support for [did core](https://www.w3.org/TR/did-core/).
+// An instance of the DID Core Abstract Data Model
+const didDocument = factory.build({
+  entries: {
+    id: 'did:example:123',
+  },
+});
 
-## License
+// Add support for production and consumption for the JSON-LD Representation
+didDocument.addRepresentation({ 'application/did+ld+json': representation });
 
-```
-Copyright 2020 Transmute Industries Inc.
+// JSON-LD requires `@context` and that all terms be defined by it.
+try {
+  await didDocument.produce('application/did+ld+json');
+} catch (e) {
+  expect(e.message).toBe('@context is required and not present.');
+}
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+// Add `@context` to the Abstract Data Model
+didDocument.assign({
+  '@context': 'https://www.w3.org/ns/did/v1',
+});
 
-    http://www.apache.org/licenses/LICENSE-2.0
+// Produce JSON-LD
+const serialization = await didDocument.produce('application/did+ld+json');
+expect(JSON.parse(serialization.toString())).toEqual({
+  '@context': 'https://www.w3.org/ns/did/v1',
+  id: 'did:example:123',
+});
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+// What about unregistered properties?
+const didDocument = factory.build({
+  entries: {
+    '@context': ['https://www.w3.org/ns/did/v1'],
+    id: 'did:example:123',
+    '🔥': '💩',
+  },
+});
+didDocument.addRepresentation({ 'application/did+ld+json': representation });
+
+// JSON-LD Production fails when `@context` does not define all properties
+try {
+  await didDocument.produce('application/did+ld+json');
+} catch (e) {
+  expect(e.message).toBe('@context does not define: 🔥');
+}
+
+// Add context so your DID Document works with the open world model of verifiable credentials...
+didDocument.assign({
+  '@context': [
+    'https://www.w3.org/ns/did/v1',
+    {
+      '🔥': 'https://en.wikipedia.org/wiki/Open-world_assumption',
+    },
+  ],
+});
+
+// Produce JSON-LD that works with Verifiable Credentials
+const serialization = await didDocument.produce('application/did+ld+json');
+expect(JSON.parse(serialization.toString())).toEqual({
+  '@context': [
+    'https://www.w3.org/ns/did/v1',
+    {
+      '🔥': 'https://en.wikipedia.org/wiki/Open-world_assumption',
+    },
+  ],
+  id: 'did:example:123',
+  '🔥': '💩',
+});
 ```
