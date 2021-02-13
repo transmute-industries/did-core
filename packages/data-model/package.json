@@ -50,9 +50,6 @@
     }
   ],
   "dependencies": {
-    "cbor": "^7.0.0",
-    "factory.ts": "^0.5.1",
-    "js-yaml": "^3.14.1",
-    "jsonld-checker": "^0.1.6"
+    "factory.ts": "^0.5.1"
   }
 }

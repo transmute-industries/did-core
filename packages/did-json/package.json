@@ -28,7 +28,6 @@
     "tsdx": "^0.14.1",
     "tslib": "^2.1.0",
     "typescript": "^3.9.9",
-    "factory.ts": "^0.5.1",
     "@did-core/data-model": "0.1.0"
   },
   "publishConfig": {
