@@ -14,9 +14,7 @@ it('can produce application/did+ld+json', async () => {
   });
   didDocument.addRepresentation(representations);
   const serialization = await didDocument.produce('application/did+ld+json');
-  expect(serialization).toEqual(
-    JSON.stringify(jsonldFixtures.example1, null, 2)
-  );
+  expect(JSON.parse(serialization.toString())).toEqual(jsonldFixtures.example1);
 });
 
 it('can consume application/did+ld+json', async () => {
@@ -40,7 +38,7 @@ it('cannot produce application/did+ld+json from application/did+json', async () 
   try {
     await didDocument.produce('application/did+ld+json');
   } catch (e) {
-    expect(e.message).toBe('@context is required and not present.');
+    expect(e.message).toBe('"@context" is required and not present.');
   }
 });
 
@@ -73,7 +71,7 @@ it('cannot produce application/did+ld+json from entries not defined in the conte
   try {
     await didDocument.produce('application/did+ld+json');
   } catch (e) {
-    expect(e.message).toBe('@context does not define: 🔥');
+    expect(e.message).toBe('"@context" does not define: 🔥');
   }
 });
 

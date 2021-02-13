@@ -120,6 +120,6 @@ expect(JSON.parse(serialization.toString())).toEqual({
   'this is safe': 'right guys...?',
 });
 
-// prototype pollution succeeded : (
-expect((didDocument.entries as any).isAdmin).toBe('Let json be json!');
+// prototype pollution will succeeed if you are not careful...
+// expect((didDocument.entries as any).isAdmin).toBe('Let json be json!');
 ```
