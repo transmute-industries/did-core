@@ -25,7 +25,7 @@ it('can consume application/did+json', async () => {
   expect((didDocument.entries as any).id).toBe('did:example:123');
 });
 
-it('can produce application/did+json with __proto__ entries', async () => {
+it('cannot produce application/did+json with __proto__ entries', async () => {
   const didDocument = factory.build();
   didDocument.addRepresentation({ 'application/did+json': representation });
   await didDocument.consume(
@@ -40,5 +40,5 @@ it('can produce application/did+json with __proto__ entries', async () => {
     id: 'did:example:123',
     'this is safe': 'right guys...?',
   });
-  expect((didDocument.entries as any).isAdmin).toBe('Let json be json!');
+  expect((didDocument.entries as any).isAdmin).toBe(undefined);
 });
