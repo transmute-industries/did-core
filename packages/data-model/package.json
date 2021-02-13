@@ -50,6 +50,7 @@
     }
   ],
   "dependencies": {
-    "factory.ts": "^0.5.1"
+    "factory.ts": "^0.5.1",
+    "js-yaml": "^3.14.1"
   }
 }
