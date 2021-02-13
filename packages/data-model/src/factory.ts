@@ -13,8 +13,11 @@ export interface DidDocument {
   representations: DidDocumentRepresentations;
   entries: AbstractDataModel<object>;
   assign: (entries: AbstractDataModel<object>) => DidDocument;
-  produce: (contentType: string) => string | Buffer;
-  consume: (contentType: string, representation: Buffer) => DidDocument;
+  produce: (contentType: string) => Promise<string | Buffer>;
+  consume: (
+    contentType: string,
+    representation: Buffer
+  ) => Promise<DidDocument>;
 }
 
 export const factoryDefaults: DidDocument = {
@@ -37,16 +40,21 @@ export const factoryDefaults: DidDocument = {
     return this;
   },
 
-  produce: function(contentType: string): string | Buffer {
+  produce: async function(contentType: string): Promise<string | Buffer> {
     if (this.representations[contentType]) {
       return this.representations[contentType].produce(this.entries);
     }
     throw new Error('Cannot produce unsupported content type: ' + contentType);
   },
 
-  consume: function(contentType: string, representation: Buffer): DidDocument {
+  consume: async function(
+    contentType: string,
+    representation: Buffer
+  ): Promise<DidDocument> {
     if (this.representations[contentType]) {
-      this.entries = this.representations[contentType].consume(representation);
+      this.entries = await this.representations[contentType].consume(
+        representation
+      );
       return this;
     }
     throw new Error('Cannot consume unsupported content type: ' + contentType);

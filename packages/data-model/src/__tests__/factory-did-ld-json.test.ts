@@ -12,7 +12,7 @@ it('can produce application/did+ld+json', async () => {
     },
   });
   didDocument.addRepresentation(representations);
-  const serialization = didDocument.produce('application/did+ld+json');
+  const serialization = await didDocument.produce('application/did+ld+json');
   expect(serialization).toEqual(
     JSON.stringify(jsonldFixtures.example1, null, 2)
   );
@@ -21,7 +21,7 @@ it('can produce application/did+ld+json', async () => {
 it('can consume application/did+ld+json', async () => {
   let didDocument = factory.build();
   didDocument.addRepresentation(representations);
-  didDocument.consume(
+  await didDocument.consume(
     'application/did+ld+json',
     Buffer.from(JSON.stringify(jsonldFixtures.example1, null, 2))
   );
@@ -37,7 +37,7 @@ it('cannot produce application/did+ld+json from application/did+json', async () 
   });
   didDocument.addRepresentation(representations);
   try {
-    didDocument.produce('application/did+ld+json');
+    await didDocument.produce('application/did+ld+json');
   } catch (e) {
     expect(e.message).toBe('@context is required and not present.');
   }
@@ -53,7 +53,48 @@ it('can produce application/did+ld+json from application/did+json after adding @
   didDocument.assign({
     '@context': 'https://www.w3.org/ns/did/v1',
   });
-  const serialization = didDocument.produce('application/did+ld+json');
+  const serialization = await didDocument.produce('application/did+ld+json');
   // not the map order does not matter
   expect(JSON.parse(serialization.toString())).toEqual(jsonldFixtures.example1);
+});
+
+it('cannot produce application/did+ld+json from entries not defined in the context', async () => {
+  expect.assertions(1);
+  const didDocument = factory.build({
+    entries: {
+      ...jsonldFixtures.example1,
+    },
+  });
+  didDocument.addRepresentation(representations);
+  didDocument.assign({
+    '🔥': '💩',
+  });
+  try {
+    await didDocument.produce('application/did+ld+json');
+  } catch (e) {
+    expect(e.message).toBe('@context does not define: 🔥');
+  }
+});
+
+it('can produce application/did+ld+json from entries defined in context', async () => {
+  expect.assertions(1);
+  const didDocument = factory.build({
+    entries: {
+      ...jsonldFixtures.example1,
+    },
+  });
+  didDocument.addRepresentation(representations);
+  didDocument.assign({
+    '🔥': '💩',
+  });
+  didDocument.assign({
+    '@context': [
+      'https://www.w3.org/ns/did/v1',
+      {
+        '🔥': 'https://en.wikipedia.org/wiki/Open-world_assumption',
+      },
+    ],
+  });
+  const serialization = await didDocument.produce('application/did+ld+json');
+  expect(JSON.parse(serialization.toString())).toEqual(jsonldFixtures.example3);
 });

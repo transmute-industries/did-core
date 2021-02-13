@@ -9,14 +9,14 @@ it('can produce application/did+yaml', async () => {
     },
   });
   didDocument.addRepresentation(representations);
-  const serialization = didDocument.produce('application/did+yaml');
+  const serialization = await didDocument.produce('application/did+yaml');
   expect(serialization).toEqual(yamlFixtures.example0);
 });
 
 it('can consume application/did+yaml', async () => {
   let didDocument = factory.build();
   didDocument.addRepresentation(representations);
-  didDocument.consume(
+  await didDocument.consume(
     'application/did+yaml',
     Buffer.from(yamlFixtures.example1)
   );
@@ -30,6 +30,6 @@ it('can produce example2 application/did+yaml', async () => {
     },
   });
   didDocument.addRepresentation(representations);
-  const serialization = didDocument.produce('application/did+yaml');
+  const serialization = await didDocument.produce('application/did+yaml');
   expect(serialization).toEqual(yamlFixtures.example2);
 });

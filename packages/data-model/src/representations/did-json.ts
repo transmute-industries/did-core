@@ -4,16 +4,16 @@ import {
   DidDocumentConsumer,
 } from '../types';
 
-export const produceJson: DidDocumentProducer = function(
+export const produceJson: DidDocumentProducer = async function(
   entries: AbstractDataModel<object>
-): string {
+): Promise<string> {
   // TODO: security checks for sanitization
   return JSON.stringify(entries, null, 2);
 };
 
-export const consumeJson: DidDocumentConsumer = function(
+export const consumeJson: DidDocumentConsumer = async function(
   representation: Buffer
-): AbstractDataModel<object> {
+): Promise<AbstractDataModel<object>> {
   // TODO: security checks for sanitization
   return JSON.parse(representation.toString());
 };

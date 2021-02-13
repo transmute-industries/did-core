@@ -29,7 +29,7 @@ it('throws when asked to produce an unsupported representation', async () => {
     },
   });
   try {
-    didDocument.produce('application/did+json');
+    await didDocument.produce('application/did+json');
   } catch (e) {
     expect(e.message).toBe(
       'Cannot produce unsupported content type: application/did+json'
@@ -45,7 +45,7 @@ it('throws when asked to consume an unsupported representation', async () => {
     },
   });
   try {
-    didDocument.consume(
+    await didDocument.consume(
       'application/did+json',
       Buffer.from(`{"id": "did:example:123"}`)
     );

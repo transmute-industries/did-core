@@ -9,14 +9,14 @@ it('can produce application/did+json', async () => {
     },
   });
   didDocument.addRepresentation(representations);
-  const serialization = didDocument.produce('application/did+json');
+  const serialization = await didDocument.produce('application/did+json');
   expect(serialization).toEqual(JSON.stringify(jsonFixtures.example1, null, 2));
 });
 
 it('can consume application/did+json', async () => {
   let didDocument = factory.build();
   didDocument.addRepresentation(representations);
-  didDocument.consume(
+  await didDocument.consume(
     'application/did+json',
     Buffer.from(JSON.stringify(jsonFixtures.example1, null, 2))
   );

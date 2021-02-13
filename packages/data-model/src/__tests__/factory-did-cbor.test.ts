@@ -8,14 +8,14 @@ it('can produce application/did+cbor', async () => {
     },
   });
   didDocument.addRepresentation(representations);
-  const serialization = didDocument.produce('application/did+cbor');
+  const serialization = await didDocument.produce('application/did+cbor');
   expect(serialization).toEqual(cborFixtures.example1);
 });
 
 it('can consume application/did+cbor', async () => {
   let didDocument = factory.build();
   didDocument.addRepresentation(representations);
-  didDocument.consume('application/did+cbor', cborFixtures.example1);
+  await didDocument.consume('application/did+cbor', cborFixtures.example1);
   expect((didDocument.entries as any).id).toBe('did:example:123');
 });
 
@@ -26,6 +26,6 @@ it('can produce example2 application/did+cbor', async () => {
     },
   });
   didDocument.addRepresentation(representations);
-  const serialization = didDocument.produce('application/did+cbor');
+  const serialization = await didDocument.produce('application/did+cbor');
   expect(serialization).toEqual(cborFixtures.example2);
 });

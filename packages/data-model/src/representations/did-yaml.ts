@@ -6,16 +6,16 @@ import {
   DidDocumentConsumer,
 } from '../types';
 
-export const produceYaml: DidDocumentProducer = function(
+export const produceYaml: DidDocumentProducer = async function(
   entries: AbstractDataModel<object>
-): string {
+): Promise<string> {
   // TODO: security checks for sanitization
   return yaml.dump(entries);
 };
 
-export const consumeYaml: DidDocumentConsumer = function(
+export const consumeYaml: DidDocumentConsumer = async function(
   representation: Buffer
-): AbstractDataModel<object> {
+): Promise<AbstractDataModel<object>> {
   // TODO: security checks for sanitization
   return yaml.load(representation.toString());
 };
