@@ -1,16 +1,16 @@
 import { factory, representations } from '..';
 
-import { json as fixtures } from '../__fixtures__';
+import { json as jsonFixtures } from '../__fixtures__';
 
 it('can produce application/did+json', async () => {
   const didDocument = factory.build({
     entries: {
-      ...fixtures.example1,
+      ...jsonFixtures.example1,
     },
   });
   didDocument.addRepresentation(representations);
   const serialization = didDocument.produce('application/did+json');
-  expect(serialization).toEqual(JSON.stringify(fixtures.example1, null, 2));
+  expect(serialization).toEqual(JSON.stringify(jsonFixtures.example1, null, 2));
 });
 
 it('can consume application/did+json', async () => {
@@ -18,7 +18,7 @@ it('can consume application/did+json', async () => {
   didDocument.addRepresentation(representations);
   didDocument.consume(
     'application/did+json',
-    Buffer.from(JSON.stringify(fixtures.example1, null, 2))
+    Buffer.from(JSON.stringify(jsonFixtures.example1, null, 2))
   );
   expect((didDocument.entries as any).id).toBe('did:example:123');
 });
