@@ -26,7 +26,6 @@ it('can consume application/did+yaml', async () => {
 it('can produce example2 application/did+yaml', async () => {
   const didDocument = factory.build({
     entries: {
-      ...jsonFixtures.example1,
       ...jsonFixtures.example2,
     },
   });
