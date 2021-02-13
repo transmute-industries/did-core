@@ -1,0 +1,56 @@
+{
+  "name": "@did-core/did-cbor",
+  "author": "Orie Steele",
+  "module": "dist/did-cbor.esm.js",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "homepage": "https://github.com/transmute-industries/did-core/tree/master/packages/did-cbor",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/transmute-industries/did-core.git",
+    "directory": "packages/did-cbor"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test",
+    "lint": "tsdx lint src --fix",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^4.9.2",
+    "husky": "^5.0.9",
+    "size-limit": "^4.9.2",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.1.0",
+    "typescript": "^3.9.9",
+    "@did-core/data-model": "0.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "size-limit": [
+    {
+      "path": "dist/did-cbor.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/did-cbor.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "dependencies": {
+    "cbor": "^7.0.0"
+  }
+}
