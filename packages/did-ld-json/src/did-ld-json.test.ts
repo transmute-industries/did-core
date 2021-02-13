@@ -1,9 +1,10 @@
-import { factory, representations } from '..';
+import { factory } from '@did-core/data-model';
 
-import {
-  json as jsonFixtures,
-  jsonld as jsonldFixtures,
-} from '../__fixtures__';
+import { representation } from './did-ld-json';
+
+import { json as jsonFixtures, jsonld as jsonldFixtures } from './__fixtures__';
+
+const representations = { 'application/did+ld+json': representation };
 
 it('can produce application/did+ld+json', async () => {
   const didDocument = factory.build({

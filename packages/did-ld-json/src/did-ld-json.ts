@@ -2,10 +2,11 @@ import {
   AbstractDataModel,
   DidDocumentProducer,
   DidDocumentConsumer,
-} from '../types';
+} from '@did-core/data-model';
 
 import { check } from 'jsonld-checker';
-export const produceJson: DidDocumentProducer = async function(
+
+export const produceJson: DidDocumentProducer = async function (
   entries: AbstractDataModel<object>
 ): Promise<string> {
   if (!(entries as any)['@context']) {
@@ -23,7 +24,7 @@ export const produceJson: DidDocumentProducer = async function(
   );
 };
 
-export const consumeJson: DidDocumentConsumer = async function(
+export const consumeJson: DidDocumentConsumer = async function (
   representation: Buffer
 ): Promise<AbstractDataModel<object>> {
   // TODO: security checks for sanitization
