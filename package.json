@@ -2,10 +2,31 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "postinstall": "lerna bootstrap",
-    "shove": "git add -A; git commit -m 'chore: ci'; git push origin master"
+    "clean:lock": "npx lerna exec 'rm -rf package-lock.json node_modules'",
+    "install:clean": "npx lerna clean -y && rm -rf node_modules && npm i",
+    "install:ci": "npm install --ignore-scripts && lerna link && lerna bootstrap --since origin/master --include-dependencies",
+    "bootstrap": "lerna bootstrap",
+    "lint": "lerna run lint --stream",
+    "test": "lerna run test --stream",
+    "postinstall": "npm run bootstrap",
+    "publish:stable:major": "lerna publish major",
+    "publish:stable:minor": "lerna publish minor",
+    "publish:stable:patch": "lerna publish patch",
+    "publish:unstable": "lerna publish prerelease --preid unstable --yes",
+    "release": "lerna publish",
+    "release:canary": "lerna publish --canary",
+    "shove": "git add -A; git commit -m 'chore(ci): test ci'; git push origin master"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-push": "npm run lint"
+    }
   },
   "devDependencies": {
-    "lerna": "^3.22.1"
+    "@commitlint/cli": "^9.1.1",
+    "@commitlint/config-conventional": "^9.1.1",
+    "husky": "^4.2.5",
+    "lerna": "^3.22.0"
   }
 }
