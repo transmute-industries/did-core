@@ -5,7 +5,7 @@
     "clean:lock": "npx lerna exec 'rm -rf package-lock.json node_modules'",
     "preinstall:clean": "npx lerna exec npx jest -- --clearCache",
     "install:clean": "npx lerna clean -y && rm -rf node_modules && npm i",
-    "install:ci": "npm install --ignore-scripts && lerna link && lerna bootstrap --since origin/master --include-dependencies",
+    "install:ci": "npm install --ignore-scripts && lerna link && lerna bootstrap --since origin/main --include-dependencies",
     "bootstrap": "lerna bootstrap",
     "lint": "lerna run lint --stream",
     "test": "lerna run test --stream",
@@ -16,7 +16,7 @@
     "publish:unstable": "lerna publish prerelease --preid unstable --yes",
     "release": "lerna publish",
     "release:canary": "lerna publish --canary",
-    "shove": "git add -A; git commit -m 'chore(ci): test ci'; git push origin master"
+    "shove": "git add -A; git commit -m 'chore(ci): test ci'; git push origin main"
   },
   "husky": {
     "hooks": {

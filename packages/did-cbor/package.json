@@ -6,7 +6,7 @@
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "homepage": "https://github.com/transmute-industries/did-core/tree/master/packages/did-cbor",
+  "homepage": "https://github.com/transmute-industries/did-core/tree/main/packages/did-cbor",
   "repository": {
     "type": "git",
     "url": "https://github.com/transmute-industries/did-core.git",
