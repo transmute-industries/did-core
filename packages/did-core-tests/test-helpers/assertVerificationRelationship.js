@@ -89,7 +89,7 @@ const assertVerificationRelationship = (relationName, ajv) => {
       [
         {
           id: 'did:example:123#key-0',
-          type: 'JsonWebKey2020',
+          type: 'Ed25519VerificationKey2018',
           controller: 'did:example:123',
           publicKeyBase58: 'AMXANyfXDs6goAtjXzsXKGimryx9DNAhHTLgqLWcM29B',
         },
@@ -106,7 +106,7 @@ const assertVerificationRelationship = (relationName, ajv) => {
       [
         {
           id: '?versionId=42#key-0',
-          type: 'JsonWebKey2020',
+          type: 'Ed25519VerificationKey2018',
           controller: 'did:example:123',
           publicKeyBase58: 'AMXANyfXDs6goAtjXzsXKGimryx9DNAhHTLgqLWcM29B',
         },
@@ -123,7 +123,7 @@ const assertVerificationRelationship = (relationName, ajv) => {
       [
         {
           id: 'did:example:123?versionId=42#key-0',
-          type: 'JsonWebKey2020',
+          type: 'Ed25519VerificationKey2018',
           controller: 'did:example:123',
           publicKeyBase58: 'AMXANyfXDs6goAtjXzsXKGimryx9DNAhHTLgqLWcM29B',
         },
