@@ -1,0 +1,6 @@
+{
+  "$id": "ascii.json",
+  "title": "ASCII string",
+  "type": "string",
+  "pattern": "[\\x00-\\x7F]"
+}
