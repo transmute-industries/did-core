@@ -1,4 +1,4 @@
-const didUrlPattern = /did:(?<method>[a-z0-9]+):(?<idchar>[a-zA-Z0-9:]+)(?<pathname>((\/.[^#?]+)?))(?<query>((\?.[^#\n?]+)?))(?<fragment>((\#.*)?))/;
+const didUrlPattern = /did:(?<method>[a-z0-9]+):(?<idchar>[a-zA-Z0-9:]+)(?<pathname>((\/.[^#?]+)?))(?<query>((\?.[^#\n?]+)?))(?<fragment>((#.*)?))/;
 
 it('should match', () => {
   let sample = 'did:example:123';
