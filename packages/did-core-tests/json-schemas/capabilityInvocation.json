@@ -1,0 +1,9 @@
+{
+  "$id": "capabilityInvocation.json",
+  "title": "Capability Invocation Method",
+  "type": "array",
+  "items": {
+    "$ref": "verificationMethod.json"
+  },
+  "additionalProperties": false
+}

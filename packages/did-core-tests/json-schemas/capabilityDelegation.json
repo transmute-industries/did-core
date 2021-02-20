@@ -1,0 +1,9 @@
+{
+  "$id": "capabilityDelegation.json",
+  "title": "Capability Delegation Method",
+  "type": "array",
+  "items": {
+    "$ref": "verificationMethod.json"
+  },
+  "additionalProperties": false
+}
