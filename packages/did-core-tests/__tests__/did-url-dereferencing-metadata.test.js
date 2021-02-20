@@ -15,21 +15,27 @@ describe('DID URL Dereferencing Metadata', () => {
         const didUrl = `did:example:123?service=images&relativeRef=${encodeURIComponent(
           relativeRef
         )}`;
-        const didUrlDereferencingOptions = {
-          accept: 'image/png',
+
+        // eslint-disable-next-line
+        const dereference = (didUrl, options) => {
+          return {
+            contentStream: Buffer.from('...'),
+            dereferencingMetadata: {
+              contentType: 'image/png',
+            },
+          };
         };
+        const { contentStream, dereferencingMetadata } = dereference(didUrl);
         expect(
           ajv.validate(
             {
               $ref: `ascii.json`,
             },
-            didUrlDereferencingOptions.accept
+            dereferencingMetadata.contentType
           )
         ).toBe(true);
-        // eslint-disable-next-line
-        const dereference = (didUrl, options) => Buffer.from('...');
-        const contentStream = dereference(didUrl, didUrlDereferencingOptions);
         expect(Buffer.isBuffer(contentStream)).toBe(true);
+        expect(dereferencingMetadata.contentType).toBe('image/png');
       });
     });
     describe(`The error code from the dereferencing process. 
