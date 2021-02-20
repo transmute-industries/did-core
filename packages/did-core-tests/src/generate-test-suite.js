@@ -10,8 +10,11 @@ statements.forEach((text) => {
   const caseNumber = section.split(' ')[0];
   const sectionHeader = section.split(' ').splice(1).join(' ');
   blocks[sectionHeader] = blocks[sectionHeader] || {};
+
+  const statement = text.split('\n').splice(1).join(' ');
+  blocks[sectionHeader][caseNumber] = blocks[sectionHeader][caseNumber] || {};
   // kill duplicates
-  blocks[sectionHeader][caseNumber] = text.split('\n').splice(1).join(' ');
+  blocks[sectionHeader][caseNumber][statement] = '';
 });
 
 Object.keys(blocks).forEach((key) => {
@@ -22,11 +25,15 @@ Object.keys(blocks).forEach((key) => {
   const fileTestCases = Object.keys(blocks[key])
     .map(
       (caseNumber) => `
-  describe("${caseNumber}", ()=>{
-    describe("${blocks[key][caseNumber].trim()}", ()=>{
-      test.todo("positive")
-      test.todo("negative")
-    })
+  describe("${caseNumber.trim()}", ()=>{
+    ${Object.keys(blocks[key][caseNumber])
+      .map(
+        (statement) => `describe("${statement.trim().replace(/"/g, `'`)}", ()=>{
+       test.todo('positive');
+       test.todo('negative');
+     })`
+      )
+      .join('\n')}
   })
 `
     )
