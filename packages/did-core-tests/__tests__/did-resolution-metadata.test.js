@@ -51,6 +51,20 @@ describe('DID Resolution Metadata', () => {
         ).toBe(true);
       });
 
+      test('can report error representationNotSupported', () => {
+        const didResolutionMetadata = {
+          error: 'representationNotSupported',
+        };
+        expect(
+          ajv.validate(
+            {
+              $ref: `ascii.json`,
+            },
+            didResolutionMetadata.error
+          )
+        ).toBe(true);
+      });
+
       test('can report error deactivated', () => {
         const didResolutionMetadata = {
           error: 'deactivated',
