@@ -1,3 +1,6 @@
+const { factory } = require('@did-core/data-model');
+const jsonld = require('@did-core/did-ld-json');
+
 const Ajv = require('ajv');
 
 const ajv = new Ajv({ strict: false });
@@ -6,6 +9,50 @@ ajv.addSchema(require('../json-schemas/ascii.json'));
 
 describe('DID Resolution Metadata', () => {
   describe('7.1.2', () => {
+    describe(`The Media Type of the returned didDocumentStream. 
+      This property is REQUIRED if resolution is successful and if 
+      the resolveRepresentation function was called. 
+      This property MUST NOT be present if the resolve function was called. 
+      The value of this property MUST be an ASCII string that is 
+      the Media Type of the conformant representations. 
+      The caller of the resolveRepresentation function MUST use 
+      this value when determining how to parse and process the 
+      didDocumentStream returned by this function into the data model.`, () => {
+      test('contentType is required when resolveRepresentation is called', async () => {
+        const didResolutionMetadata = {
+          contentType: 'application/did+ld+json',
+        };
+        expect(
+          ajv.validate(
+            {
+              $ref: `ascii.json`,
+            },
+            didResolutionMetadata.contentType
+          )
+        ).toBe(true);
+        // resolveRepresentation ~= resolve -> consume -> produce
+        const didDocument = await factory
+          .build()
+          .addRepresentation({
+            'application/did+ld+json': jsonld.representation,
+          })
+          .consume(
+            // here we use the didResolutionMetadata as part of consumption
+            didResolutionMetadata.contentType,
+            JSON.stringify({
+              '@context': ['https://www.w3.org/ns/did/v1'],
+              id: 'did:example:123',
+            })
+          );
+        const representation = await didDocument.produce(
+          // here we use the didResolutionMetadata as part of producion
+          didResolutionMetadata.contentType
+        );
+        expect(representation.toString('hex')).toBe(
+          '7b2240636f6e74657874223a5b2268747470733a2f2f7777772e77332e6f72672f6e732f6469642f7631225d2c226964223a226469643a6578616d706c653a313233227d'
+        );
+      });
+    });
     describe(`The error code from the resolution process. 
       This property is REQUIRED when there is an error in the resolution process. 
       The value of this property MUST be a single keyword ASCII string. 
