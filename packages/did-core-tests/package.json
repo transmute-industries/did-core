@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "node ./src/generate-test-suite.js",
-    "test": "jest"
+    "test": "jest --passWithNoTests"
   },
   "author": "Orie Steele",
   "license": "Apache-2.0",
