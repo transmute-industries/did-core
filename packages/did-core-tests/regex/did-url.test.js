@@ -1,4 +1,4 @@
-const didUrlPattern = /did:(?<method>[a-z0-9]+):(?<idchar>[a-zA-Z0-9:]+)(?<pathname>((\/.[^#?]+)?))(?<query>((\?.[^#\n?]+)?))(?<fragment>((#.*)?))/;
+const didUrlPattern = /did:(?<method>[a-z0-9]+):(?<idchar>[a-zA-Z0-9:\-_]+)(?<pathname>((\/.[^#?]+)?))(?<query>((\?.[^#\n?]+)?))(?<fragment>((#.*)?))/;
 
 it('should match', () => {
   let sample = 'did:example:123';
@@ -23,6 +23,22 @@ it('should match', () => {
   expect(matches.groups.pathname).toBe('/pathname');
   expect(matches.groups.query).toBe('?query');
   expect(matches.groups.fragment).toBe('#key');
+
+  // base64url is safe for idchar
+  sample =
+    'did:example:ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+  matches = sample.match(didUrlPattern);
+  expect(matches.groups.idchar).toBe(
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_'
+  );
+
+  // base58 is safe for idchar
+  sample =
+    'did:example:123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+  matches = sample.match(didUrlPattern);
+  expect(matches.groups.idchar).toBe(
+    '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
+  );
 });
 
 it('should NOT match', () => {

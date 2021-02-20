@@ -2,5 +2,5 @@
   "$id": "didUrl.json",
   "title": "DID URL",
   "type": "string",
-  "pattern": "did:(?<method>[a-z0-9]+):(?<idchar>[a-zA-Z0-9:]+)(?<pathname>((/.[^#?]+)?))(?<query>((\\?.[^#\n?]+)?))(?<fragment>((\\#.*)?))"
+  "pattern": "did:(?<method>[a-z0-9]+):(?<idchar>[a-zA-Z0-9:\\-_]+)(?<pathname>((/.[^#?]+)?))(?<query>((\\?.[^#\n?]+)?))(?<fragment>((\\#.*)?))"
 }
