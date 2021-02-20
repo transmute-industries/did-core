@@ -8,15 +8,15 @@ const ajv = new Ajv({ strict: false });
 ajv.addSchema(require('../json-schemas/didUrl.json'));
 ajv.addSchema(require('../json-schemas/Jwk.json'));
 ajv.addSchema(require('../json-schemas/verificationMethod.json'));
-ajv.addSchema(require('../json-schemas/assertionMethod.json'));
+ajv.addSchema(require('../json-schemas/authentication.json'));
 
-describe('Assertion', () => {
-  describe('5.3.2', () => {
-    describe(`The assertionMethod property is OPTIONAL. 
+describe('Authentication', () => {
+  describe('5.3.1', () => {
+    describe(`The authentication property is OPTIONAL. 
     If present, the associated value MUST be 
     an ordered set of one or more verification methods. 
     Each verification method MAY be embedded or referenced.`, () => {
-      assertVerificationRelationship('assertionMethod', ajv);
+      assertVerificationRelationship('authentication', ajv);
     });
   });
 });
