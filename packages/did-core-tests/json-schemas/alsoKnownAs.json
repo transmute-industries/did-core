@@ -1,0 +1,10 @@
+{
+  "$id": "alsoKnownAs.json",
+  "title": "Also Known As",
+  "type": "array",
+  "items": {
+    "type": "string",
+    "format": "uri"
+  },
+  "additionalProperties": false
+}
