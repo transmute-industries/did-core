@@ -18,6 +18,7 @@
   "author": "Orie Steele",
   "license": "Apache-2.0",
   "dependencies": {
+    "slugify": "^1.4.6",
     "ajv": "^6.12.6",
     "@did-core/data-model": "^0.1.1-unstable.2",
     "@did-core/did-ld-json": "^0.1.1-unstable.2",
@@ -32,7 +33,6 @@
     "eslint-plugin-jest": "^24.1.0",
     "eslint-plugin-prettier": "^3.3.1",
     "jest": "^26.6.3",
-    "prettier": "^2.2.1",
-    "slugify": "^1.4.6"
+    "prettier": "^2.2.1"
   }
 }
