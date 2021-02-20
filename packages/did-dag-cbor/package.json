@@ -2,7 +2,7 @@
   "name": "@did-core/did-dag-cbor",
   "author": "Orie Steele",
   "module": "dist/did-dag-cbor.esm.js",
-  "version": "0.1.1-unstable.2",
+  "version": "0.1.1-unstable.3",
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -22,7 +22,7 @@
     "analyze": "size-limit --why"
   },
   "devDependencies": {
-    "@did-core/data-model": "^0.1.1-unstable.2",
+    "@did-core/data-model": "^0.1.1-unstable.3",
     "@size-limit/preset-small-lib": "^4.9.2",
     "husky": "^5.0.9",
     "size-limit": "^4.9.2",
