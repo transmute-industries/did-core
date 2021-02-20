@@ -1,0 +1,16 @@
+{
+  "name": "@transmute/did-core-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "node ./src/generate-test-suite.js",
+    "test": "jest --passWithNoTests"
+  },
+  "author": "Orie Steele",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "jest": "^26.6.3",
+    "slugify": "^1.4.6"
+  }
+}
