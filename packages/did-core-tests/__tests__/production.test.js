@@ -1,7 +1,7 @@
 const { factory } = require('@did-core/data-model');
 const json = require('@did-core/did-json');
 const jsonld = require('@did-core/did-ld-json');
-const cbor = require('@did-core/did-cbor');
+// const cbor = require('@did-core/did-cbor');
 
 describe('Production', () => {
   describe('6.2.1', () => {
