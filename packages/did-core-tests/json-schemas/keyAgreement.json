@@ -1,0 +1,9 @@
+{
+  "$id": "keyAgreement.json",
+  "title": "Key Agreement Method",
+  "type": "array",
+  "items": {
+    "$ref": "verificationMethod.json"
+  },
+  "additionalProperties": false
+}
