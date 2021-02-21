@@ -9,6 +9,9 @@
     "url": "https://github.com/transmute-industries/did-core.git",
     "directory": "packages/did-core-tests"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "node ./src/generate-test-suite.js",
     "postbuild": "npm run lint",
