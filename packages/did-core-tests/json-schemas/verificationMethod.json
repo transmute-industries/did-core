@@ -1,0 +1,46 @@
+{
+  "$id": "verificationMethod.json",
+  "title": "Verification Method",
+  "anyOf": [
+    {
+      "$ref": "didUrl.json"
+    },
+    {
+      "type": "string",
+      "format": "uri-reference"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "$ref": "didUrl.json"
+            },
+            {
+              "type": "string",
+              "format": "uri-reference"
+            }
+          ]
+        },
+        "type": {
+          "type": "string"
+        },
+        "controller": {
+          "$ref": "did.json"
+        },
+        "publicKeyJwk": {
+          "$ref": "Jwk.json"
+        },
+        "publicKeyBase58": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "type", "controller"],
+      "not": {
+        "required": ["publicKeyJwk", "publicKeyBase58"]
+      },
+      "additionalProperties": true
+    }
+  ]
+}

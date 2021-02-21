@@ -1,0 +1,60 @@
+{
+  "$id": "service.json",
+  "title": "Service",
+  "anyOf": [
+    {
+      "$ref": "didUrl.json"
+    },
+    {
+      "type": "string",
+      "format": "uri-reference"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "$ref": "didUrl.json"
+            },
+            {
+              "type": "string",
+              "format": "uri-reference"
+            }
+          ]
+        },
+        "type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "serviceEndpoint": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "object"
+            }
+          ]
+        }
+      },
+      "required": ["id", "type", "serviceEndpoint"],
+      "additionalProperties": true
+    }
+  ]
+}

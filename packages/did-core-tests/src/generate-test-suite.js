@@ -10,23 +10,26 @@ statements.forEach((text) => {
   const caseNumber = section.split(' ')[0];
   const sectionHeader = section.split(' ').splice(1).join(' ');
   blocks[sectionHeader] = blocks[sectionHeader] || {};
+
+  const statement = text.split('\n').splice(1).join(' ');
+  blocks[sectionHeader][caseNumber] = blocks[sectionHeader][caseNumber] || {};
   // kill duplicates
-  blocks[sectionHeader][caseNumber] = text.split('\n').splice(1).join(' ');
+  blocks[sectionHeader][caseNumber][statement] = '';
 });
 
 Object.keys(blocks).forEach((key) => {
-  const fileName = slugify(key, {
-    replacement: '-',
-    lower: true,
-  });
   const fileTestCases = Object.keys(blocks[key])
     .map(
       (caseNumber) => `
-  describe("${caseNumber}", ()=>{
-    describe("${blocks[key][caseNumber].trim()}", ()=>{
-      test.todo("positive")
-      test.todo("negative")
-    })
+  describe("${caseNumber.trim()}", ()=>{
+    ${Object.keys(blocks[key][caseNumber])
+      .map(
+        (statement) => `describe("${statement.trim().replace(/"/g, `'`)}", ()=>{
+       test.todo('positive');
+       test.todo('negative');
+     })`
+      )
+      .join('\n')}
   })
 `
     )
@@ -36,6 +39,11 @@ Object.keys(blocks).forEach((key) => {
 describe("${key}", ()=>{
   ${fileTestCases}
 })`;
+  const firstCaseNumber = Object.keys(blocks[key])[0];
+  const fileName = slugify(`${firstCaseNumber}-${key}`, {
+    replacement: '-',
+    lower: true,
+  });
   fs.writeFileSync(
     path.resolve(__dirname, `../__generated__/${fileName}.test.js`),
     fileContents

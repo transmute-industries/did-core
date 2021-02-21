@@ -1,0 +1,9 @@
+{
+  "$id": "services.json",
+  "title": "Services",
+  "type": "array",
+  "items": {
+    "$ref": "service.json"
+  },
+  "additionalProperties": false
+}

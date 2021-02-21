@@ -3,6 +3,12 @@
   "version": "0.1.1-unstable.3",
   "description": "",
   "main": "index.js",
+  "homepage": "https://github.com/transmute-industries/did-core/tree/main/packages/did-core-tests",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/transmute-industries/did-core.git",
+    "directory": "packages/did-core-tests"
+  },
   "scripts": {
     "build": "node ./src/generate-test-suite.js",
     "postbuild": "npm run lint",
@@ -12,16 +18,22 @@
   "author": "Orie Steele",
   "license": "Apache-2.0",
   "dependencies": {
-    "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jest": "^24.1.0",
-    "jest": "^26.6.3",
-    "slugify": "^1.4.6"
+    "ajv": "^6.12.6",
+    "slugify": "^1.4.6",
+    "@did-core/data-model": "^0.1.1-unstable.2",
+    "@did-core/did-ld-json": "^0.1.1-unstable.2",
+    "@did-core/did-json": "^0.1.1-unstable.2",
+    "@did-core/did-cbor": "^0.1.1-unstable.2"
   },
   "devDependencies": {
     "eslint": "^7.20.0",
+    "eslint-config-airbnb-base": "^14.2.0",
     "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.1.0",
     "eslint-plugin-prettier": "^3.3.1",
+    "jest": "^26.6.3",
+    "jest-html-reporters": "^2.1.2",
     "prettier": "^2.2.1"
   }
 }

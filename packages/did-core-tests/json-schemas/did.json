@@ -1,0 +1,6 @@
+{
+  "$id": "did.json",
+  "title": "DID",
+  "type": "string",
+  "pattern": "did:(?<method>[a-z0-9]+):(?<idchar>[a-zA-Z0-9:\\-_]+)"
+}

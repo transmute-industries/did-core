@@ -1,0 +1,9 @@
+{
+  "$id": "verificationMethods.json",
+  "title": "Verification Methods",
+  "type": "array",
+  "items": {
+    "$ref": "verificationMethod.json"
+  },
+  "additionalProperties": false
+}

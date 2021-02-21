@@ -1,0 +1,9 @@
+{
+  "$id": "authentication.json",
+  "title": "Authentication Method",
+  "type": "array",
+  "items": {
+    "$ref": "verificationMethod.json"
+  },
+  "additionalProperties": false
+}
