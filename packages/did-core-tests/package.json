@@ -1,6 +1,6 @@
 {
   "name": "@transmute/did-core-tests",
-  "version": "0.1.1-unstable.3",
+  "version": "0.1.1-unstable.4",
   "description": "",
   "main": "index.js",
   "homepage": "https://github.com/transmute-industries/did-core/tree/main/packages/did-core-tests",
@@ -18,12 +18,12 @@
   "author": "Orie Steele",
   "license": "Apache-2.0",
   "dependencies": {
+    "@did-core/data-model": "^0.1.1-unstable.4",
+    "@did-core/did-cbor": "^0.1.1-unstable.4",
+    "@did-core/did-json": "^0.1.1-unstable.4",
+    "@did-core/did-ld-json": "^0.1.1-unstable.4",
     "ajv": "^6.12.6",
-    "slugify": "^1.4.6",
-    "@did-core/data-model": "^0.1.1-unstable.2",
-    "@did-core/did-ld-json": "^0.1.1-unstable.2",
-    "@did-core/did-json": "^0.1.1-unstable.2",
-    "@did-core/did-cbor": "^0.1.1-unstable.2"
+    "slugify": "^1.4.6"
   },
   "devDependencies": {
     "eslint": "^7.20.0",
