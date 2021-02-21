@@ -22,6 +22,15 @@ jobs:
       - name: Install
         run: npm ci
 
+      - name: Test
+        run: npm run test
+
+      - name: Deploy test report
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+
       - name: Setup npm profile
         run: |
           echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
