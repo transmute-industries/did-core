@@ -27,7 +27,7 @@
           "type": "string"
         },
         "controller": {
-          "type": "string"
+          "$ref": "did.json"
         },
         "publicKeyJwk": {
           "$ref": "Jwk.json"

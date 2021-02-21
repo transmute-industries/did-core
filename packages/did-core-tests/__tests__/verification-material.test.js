@@ -2,6 +2,7 @@ const Ajv = require('ajv');
 
 const ajv = new Ajv({ strict: false });
 
+ajv.addSchema(require('../json-schemas/did.json'));
 ajv.addSchema(require('../json-schemas/didUrl.json'));
 ajv.addSchema(require('../json-schemas/Jwk.json'));
 ajv.addSchema(require('../json-schemas/verificationMethod.json'));

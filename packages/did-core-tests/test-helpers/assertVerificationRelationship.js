@@ -1,7 +1,10 @@
+/* eslint-disable no-param-reassign */
 const { factory } = require('@did-core/data-model');
 const { representation } = require('@did-core/did-ld-json');
 
-const assertVerificationRelationship = (relationName, ajv) => {
+const assertVerificationRelationship = (relationName, ajv, relationSchema) => {
+  relationSchema = relationSchema || `${relationName}.json`;
+
   test(`can produce a did document without ${relationName}`, async () => {
     const didDocument = factory.build({
       entries: {
@@ -43,7 +46,7 @@ const assertVerificationRelationship = (relationName, ajv) => {
   test('can validate relative', () => {
     const isValid = ajv.validate(
       {
-        $ref: `${relationName}.json`,
+        $ref: relationSchema,
       },
       ['#key-0']
     );
@@ -53,7 +56,7 @@ const assertVerificationRelationship = (relationName, ajv) => {
   test('can validate absolute references ', () => {
     const isValid = ajv.validate(
       {
-        $ref: `${relationName}.json`,
+        $ref: relationSchema,
       },
       ['did:example:123#key-0']
     );
@@ -63,7 +66,7 @@ const assertVerificationRelationship = (relationName, ajv) => {
   test('can validate embedded relative', () => {
     const isValid = ajv.validate(
       {
-        $ref: `${relationName}.json`,
+        $ref: relationSchema,
       },
       [
         {
@@ -84,7 +87,7 @@ const assertVerificationRelationship = (relationName, ajv) => {
   test('can validate embedded absolute', () => {
     const isValid = ajv.validate(
       {
-        $ref: `${relationName}.json`,
+        $ref: relationSchema,
       },
       [
         {
@@ -101,7 +104,7 @@ const assertVerificationRelationship = (relationName, ajv) => {
   test('can validate embedded relative with query', () => {
     const isValid = ajv.validate(
       {
-        $ref: `${relationName}.json`,
+        $ref: relationSchema,
       },
       [
         {
@@ -118,7 +121,7 @@ const assertVerificationRelationship = (relationName, ajv) => {
   test('can validate embedded absolute with query', () => {
     const isValid = ajv.validate(
       {
-        $ref: `${relationName}.json`,
+        $ref: relationSchema,
       },
       [
         {
