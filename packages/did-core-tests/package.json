@@ -14,9 +14,11 @@
   },
   "scripts": {
     "build": "node ./src/generate-test-suite.js",
-    "postbuild": "npm run lint",
+    "postbuild": "npm run lint && npm run augment-report",
     "test": "jest --passWithNoTests",
-    "lint": "eslint . --fix"
+    "posttest": "npm run augment-report",
+    "lint": "eslint . --fix",
+    "augment-report": "node ./src/augment-report.js"
   },
   "author": "Orie Steele",
   "license": "Apache-2.0",
