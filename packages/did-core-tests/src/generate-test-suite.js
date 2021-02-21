@@ -18,10 +18,6 @@ statements.forEach((text) => {
 });
 
 Object.keys(blocks).forEach((key) => {
-  const fileName = slugify(key, {
-    replacement: '-',
-    lower: true,
-  });
   const fileTestCases = Object.keys(blocks[key])
     .map(
       (caseNumber) => `
@@ -43,6 +39,11 @@ Object.keys(blocks).forEach((key) => {
 describe("${key}", ()=>{
   ${fileTestCases}
 })`;
+  const firstCaseNumber = Object.keys(blocks[key])[0];
+  const fileName = slugify(`${firstCaseNumber}-${key}`, {
+    replacement: '-',
+    lower: true,
+  });
   fs.writeFileSync(
     path.resolve(__dirname, `../__generated__/${fileName}.test.js`),
     fileContents
