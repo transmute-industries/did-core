@@ -18,15 +18,39 @@ const cleaner = (key: any, value: any): void => {
   }
 };
 
+const defaultSupportedContexts: any = {
+  // did core only defines relationships, not key types...
+  [constants.DID_CONTEXT_V1_URL]: contexts.get(constants.DID_CONTEXT_V1_URL),
+  // our kitchen sink context for common key types
+  [constants.DID_CONTEXT_TRANSMUTE_V1_URL]: contexts.get(
+    constants.DID_CONTEXT_TRANSMUTE_V1_URL
+  ),
+  // specific suite key types
+  [constants.DID_CONTEXT_TRANSMUTE_BLS12381_2020_V1_URL]: contexts.get(
+    constants.DID_CONTEXT_TRANSMUTE_BLS12381_2020_V1_URL
+  ),
+  [constants.DID_CONTEXT_TRANSMUTE_JWS_2020_V1_URL]: contexts.get(
+    constants.DID_CONTEXT_TRANSMUTE_JWS_2020_V1_URL
+  ),
+  [constants.DID_CONTEXT_TRANSMUTE_ED25519_2018_V1_URL]: contexts.get(
+    constants.DID_CONTEXT_TRANSMUTE_ED25519_2018_V1_URL
+  ),
+  [constants.DID_CONTEXT_TRANSMUTE_X25519_2018_V1_URL]: contexts.get(
+    constants.DID_CONTEXT_TRANSMUTE_X25519_2018_V1_URL
+  ),
+};
+
 const defaultDocumentLoader = async (
   iri: string
 ): Promise<{ documentUrl: string; document: any }> => {
-  if (iri === constants.DID_CONTEXT_V1_URL) {
+  if (defaultSupportedContexts[iri]) {
     return {
       documentUrl: iri,
-      document: contexts.get(constants.DID_CONTEXT_V1_URL),
+      document: defaultSupportedContexts[iri],
     };
   }
+
+  console.error('Unsupported iri: ' + iri);
   throw new Error('Unsupported iri: ' + iri);
 };
 

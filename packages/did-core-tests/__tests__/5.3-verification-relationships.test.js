@@ -12,7 +12,10 @@ describe('Verification Relationships', () => {
         await factory
           .build({
             entries: {
-              '@context': ['https://www.w3.org/ns/did/v1'],
+              '@context': [
+                'https://www.w3.org/ns/did/v1',
+                'https://ns.did.ai/suites/jws-2020/v1',
+              ],
               id: 'did:example:123',
               verificationMethod: [
                 {
@@ -56,6 +59,7 @@ describe('Verification Relationships', () => {
             entries: {
               '@context': [
                 'https://www.w3.org/ns/did/v1',
+                'https://ns.did.ai/suites/jws-2020/v1',
                 {
                   magicMethod: {
                     '@id': 'https://example.com/ns#magicMethod',

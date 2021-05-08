@@ -40,27 +40,24 @@ describe('Verification Methods', () => {
           })
           .addRepresentation({
             'application/did+ld+json': jsonld.representation,
-          });
+          })
+          .produce('application/did+ld+json');
       });
 
       test('can produce with verificationMethod', async () => {
         await factory
-          .build()
-          .addRepresentation({
-            'application/did+ld+json': jsonld.representation,
-          })
-          .consume(
-            'application/did+ld+json',
-            JSON.stringify({
-              '@context': ['https://www.w3.org/ns/did/v1'],
+          .build({
+            entries: {
+              '@context': [
+                'https://www.w3.org/ns/did/v1',
+                'https://ns.did.ai/suites/jws-2020/v1',
+              ],
               id: 'did:example:123',
               verificationMethod: [
                 {
                   id: '#foo',
                   type: 'JsonWebKey2020',
                   controller: 'did:example:123',
-                  publicKeyBase58:
-                    '28N4yL5ErBRwxS8q2xdnkgtLG3TVgxEMzTLtcLHCxaNK',
                   publicKeyJwk: {
                     kty: 'OKP',
                     crv: 'X25519',
@@ -68,8 +65,12 @@ describe('Verification Methods', () => {
                   },
                 },
               ],
-            })
-          );
+            },
+          })
+          .addRepresentation({
+            'application/did+ld+json': jsonld.representation,
+          })
+          .produce('application/did+ld+json');
       });
     });
     describe(`The value of the id property for a verification method MUST be 

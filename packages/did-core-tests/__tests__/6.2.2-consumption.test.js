@@ -89,6 +89,7 @@ describe('Consumption', () => {
             JSON.stringify({
               '@context': [
                 'https://www.w3.org/ns/did/v1',
+                'https://ns.did.ai/suites/jws-2020/v1',
                 {
                   string: 'https://example.com/infra/string',
                   boolean: 'https://example.com/infra/boolean',
@@ -136,12 +137,16 @@ describe('Consumption', () => {
             // OMG, is JSON-LD really JSON???? why does this work?
             // (insider joke)
             JSON.stringify({
-              '@context': ['https://www.w3.org/ns/did/v1'],
+              '@context': [
+                'https://www.w3.org/ns/did/v1',
+                'https://ns.did.ai/suites/jws-2020/v1',
+              ],
               id: 'did:example:123',
             })
           );
         expect(didDocument.entries['@context']).toEqual([
           'https://www.w3.org/ns/did/v1',
+          'https://ns.did.ai/suites/jws-2020/v1',
         ]);
         expect(didDocument.entries.id).toBe('did:example:123');
       });
