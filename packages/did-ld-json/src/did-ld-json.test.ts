@@ -96,3 +96,16 @@ it('can produce application/did+ld+json from entries defined in context', async 
     .produce('application/did+ld+json');
   expect(JSON.parse(serialization.toString())).toEqual(jsonldFixtures.example3);
 });
+
+it('can produce application/did+ld+json multiple suites', async () => {
+  const didDocument = factory
+    .build({
+      entries: {
+        ...jsonldFixtures.example4,
+      },
+    })
+    .addRepresentation(representations);
+  const serialization = await didDocument.produce('application/did+ld+json');
+  // not the map order does not matter
+  expect(JSON.parse(serialization.toString())).toEqual(jsonldFixtures.example4);
+});

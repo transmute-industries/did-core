@@ -1,0 +1,108 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://ns.did.ai/suites/bls12381-2020/v1",
+    "https://ns.did.ai/suites/jws-2020/v1",
+    "https://ns.did.ai/suites/ed25519-2018/v1",
+    "https://ns.did.ai/suites/x25519-2018/v1"
+  ],
+  "id": "did:example:123",
+  "verificationMethod": [
+    {
+      "id": "#1",
+      "type": "Ed25519VerificationKey2018",
+      "controller": "did:example:123",
+      "publicKeyBase58": "9AyRGdJ8RGwWcEL1ySH6iNqp7SUWnnzr5vXqxrpkaaoQ"
+    },
+    {
+      "id": "#2",
+      "type": "X25519KeyAgreementKey2019",
+      "controller": "did:example:123",
+      "publicKeyBase58": "GG2yTsXWDaKFcSbTmC2KTjhNoJf6Y5wxXfkNYJR4aAuz"
+    },
+    {
+      "id": "#3",
+      "type": "JsonWebKey2020",
+      "controller": "did:example:123",
+      "publicKeyJwk": {
+        "kty": "EC",
+        "crv": "P-256",
+        "x": "uTa6-VhAYTdU3EecL3aNZhiC5HM1RHNJ-_ii0_efA4Q",
+        "y": "OK4rKm_94f_xnBwTZnmz6_0Fx9rCNtS5vsocYZGQW1s"
+      }
+    },
+    {
+      "id": "#4",
+      "type": "JsonWebKey2020",
+      "controller": "did:example:123",
+      "publicKeyJwk": {
+        "kty": "EC",
+        "crv": "P-384",
+        "x": "7eown0icAh6HKCkUsC-zdJ5NeFKVPdTg1-baPZZ2feWy0zAQuEY9CDF7mUZ8oMQX",
+        "y": "fTTM1yfDV1dJ1OP4IoOe9zr2JMS2HfqGkxnvxxrlLt-QHuzHRmMgdhFyjg9mkhmc"
+      }
+    },
+    {
+      "id": "#5",
+      "type": "JsonWebKey2020",
+      "controller": "did:example:123",
+      "publicKeyJwk": {
+        "kty": "EC",
+        "crv": "P-521",
+        "x": "AG8LV64f2MJ2NoHMwkkp9yfTgQ-IKIlBYAvyYgbXVBs4tT_LBAlTWhyTamUoii12g28dkpQGwFW-FjpR1D_hcMpJ",
+        "y": "AfTyjlkiUxIaycimFXgJGyjKvKp-v3kQ6K2zQMi5oDL1r_cRipHmWUQgHMxMCBsU52WZ3d70ns0K-X4S7k9v4hzY"
+      }
+    },
+    {
+      "id": "#6",
+      "controller": "did:example:123",
+      "type": "JsonWebKey2020",
+      "publicKeyJwk": {
+        "kty": "EC",
+        "crv": "BLS12381_G1",
+        "x": "oos-KuzRyt_KQDTKyXoXkjy62sE0VFszKt8pstx9X_pCkQNThdn1wLQDcpUVH-OS"
+      }
+    },
+    {
+      "id": "#7",
+      "controller": "did:example:123",
+      "type": "JsonWebKey2020",
+      "publicKeyJwk": {
+        "kty": "EC",
+        "crv": "BLS12381_G2",
+        "x": "kcbbhGsLI6Hl1FwW31CLgFg6FPrHEc_Ga__iiInAZoBwqkac0p27W0VBjwZQJOkxCUHMT_mHMpy-_oewTtE9EiK8rGkHm67I3UUEyAJBPF4njAqSo8TiZypM_aj-FBzW"
+      }
+    },
+    {
+      "id": "#8",
+      "type": "JsonWebKey2020",
+      "controller": "did:example:123",
+      "publicKeyJwk": {
+        "kty": "EC",
+        "crv": "secp256k1",
+        "x": "2x862RwlHGYV9J9zvhvTfUQGmSLNKTbTM1A81CJ5Cn8",
+        "y": "riVkbb8YINin1usZ-bp0Y2USlvlOMBg8-G8dpObvOEU"
+      }
+    },
+    {
+      "id": "#9",
+      "type": "JsonWebKey2020",
+      "controller": "did:example:123",
+      "publicKeyJwk": {
+        "crv": "Ed25519",
+        "x": "85F95ObKDQOcprUbPgCiLViFVryErclUWbFibemBpjM",
+        "kty": "OKP"
+      }
+    },
+    {
+      "id": "#10",
+      "type": "JsonWebKey2020",
+      "controller": "did:example:123",
+      "publicKeyJwk": {
+        "kty": "OKP",
+        "crv": "X25519",
+        "x": "rDbvyhj92iLdbBCY7eA158R2wA4mBlFcaZ9iPVViyl4"
+      }
+    }
+  ]
+}

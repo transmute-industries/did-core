@@ -33,6 +33,34 @@ const defaultDocumentLoader = async (
       document: contexts.get(constants.DID_CONTEXT_TRANSMUTE_V1_URL),
     };
   }
+
+  if (iri === 'https://ns.did.ai/suites/bls12381-2020/v1') {
+    return {
+      documentUrl: 'https://ns.did.ai/suites/bls12381-2020/v1',
+      document: require('./contexts/bls12381-2020-v1.json'),
+    };
+  }
+  if (iri === 'https://ns.did.ai/suites/jws-2020/v1') {
+    return {
+      documentUrl: 'https://ns.did.ai/suites/jws-2020/v1',
+      document: require('./contexts/jws-2020-v1.json'),
+    };
+  }
+
+  if (iri === 'https://ns.did.ai/suites/ed25519-2018/v1') {
+    return {
+      documentUrl: 'https://ns.did.ai/suites/ed25519-2018/v1',
+      document: require('./contexts/ed25519-2018-v1.json'),
+    };
+  }
+  if (iri === 'https://ns.did.ai/suites/x25519-2018/v1') {
+    return {
+      documentUrl: 'https://ns.did.ai/suites/x25519-2018/v1',
+      document: require('./contexts/x25519-2018-v1.json'),
+    };
+  }
+
+  console.error('Unsupported iri: ' + iri);
   throw new Error('Unsupported iri: ' + iri);
 };
 
