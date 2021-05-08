@@ -10,6 +10,11 @@ import { check } from 'jsonld-checker';
 
 const banned = ['constructor', '__proto__'];
 
+import bbsV1 from './contexts/bls12381-2020-v1.json';
+import jwsV1 from './contexts/jws-2020-v1.json';
+import ed25519V1 from '././contexts/ed25519-2018-v1.json';
+import x25519V1 from './contexts/x25519-2018-v1.json';
+
 const cleaner = (key: any, value: any): void => {
   if (banned.includes(key)) {
     throw new Error('Unsafe json detected.');
@@ -37,26 +42,28 @@ const defaultDocumentLoader = async (
   if (iri === 'https://ns.did.ai/suites/bls12381-2020/v1') {
     return {
       documentUrl: 'https://ns.did.ai/suites/bls12381-2020/v1',
-      document: require('./contexts/bls12381-2020-v1.json'),
+      document: bbsV1,
     };
   }
+
   if (iri === 'https://ns.did.ai/suites/jws-2020/v1') {
     return {
       documentUrl: 'https://ns.did.ai/suites/jws-2020/v1',
-      document: require('./contexts/jws-2020-v1.json'),
+      document: jwsV1,
     };
   }
 
   if (iri === 'https://ns.did.ai/suites/ed25519-2018/v1') {
     return {
       documentUrl: 'https://ns.did.ai/suites/ed25519-2018/v1',
-      document: require('./contexts/ed25519-2018-v1.json'),
+      document: ed25519V1,
     };
   }
+
   if (iri === 'https://ns.did.ai/suites/x25519-2018/v1') {
     return {
       documentUrl: 'https://ns.did.ai/suites/x25519-2018/v1',
-      document: require('./contexts/x25519-2018-v1.json'),
+      document: x25519V1,
     };
   }
 

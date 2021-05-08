@@ -210,7 +210,10 @@ describe('DID Document Metadata', () => {
             'application/did+ld+json': jsonld.representation,
           })
           .assign({
-            '@context': 'https://www.w3.org/ns/did/v1',
+            '@context': [
+              'https://www.w3.org/ns/did/v1',
+              'https://ns.did.ai/suites/jws-2020/v1',
+            ],
             id: 'did:example:123',
           });
 

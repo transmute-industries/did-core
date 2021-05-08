@@ -21,7 +21,10 @@ const assertVerificationRelationship = (relationName, ajv, relationSchema) => {
   test(`can produce a did document with ${relationName}`, async () => {
     const didDocument = factory.build({
       entries: {
-        '@context': 'https://www.w3.org/ns/did/v1',
+        '@context': [
+          'https://www.w3.org/ns/did/v1',
+          'https://ns.did.ai/suites/jws-2020/v1',
+        ],
         id: 'did:example:123',
         [relationName]: [
           {

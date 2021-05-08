@@ -16,7 +16,10 @@ describe('DID Controller', () => {
             'application/did+ld+json': jsonld.representation,
           })
           .assign({
-            '@context': 'https://www.w3.org/ns/did/v1',
+            '@context': [
+              'https://www.w3.org/ns/did/v1',
+              'https://ns.did.ai/suites/jws-2020/v1',
+            ],
             id: 'did:example:123',
             // not required.
             // controller: 'did:example:456',
@@ -31,7 +34,10 @@ describe('DID Controller', () => {
             'application/did+ld+json': jsonld.representation,
           })
           .assign({
-            '@context': 'https://www.w3.org/ns/did/v1',
+            '@context': [
+              'https://www.w3.org/ns/did/v1',
+              'https://ns.did.ai/suites/jws-2020/v1',
+            ],
             id: 'did:example:123',
             controller: 'did:example:456',
           })
@@ -45,7 +51,10 @@ describe('DID Controller', () => {
             'application/did+ld+json': jsonld.representation,
           })
           .assign({
-            '@context': 'https://www.w3.org/ns/did/v1',
+            '@context': [
+              'https://www.w3.org/ns/did/v1',
+              'https://ns.did.ai/suites/jws-2020/v1',
+            ],
             id: 'did:example:123',
             controller: ['did:example:456', 'did:example:789'],
           })
@@ -59,7 +68,10 @@ describe('DID Controller', () => {
             'application/did+ld+json': jsonld.representation,
           })
           .assign({
-            '@context': 'https://www.w3.org/ns/did/v1',
+            '@context': [
+              'https://www.w3.org/ns/did/v1',
+              'https://ns.did.ai/suites/jws-2020/v1',
+            ],
             id: 'did:example:123',
             controller: ['did:example:456', 'did:example:789'],
             authentication: [
@@ -102,7 +114,10 @@ describe('DID Controller', () => {
             'application/did+ld+json': jsonld.representation,
           })
           .assign({
-            '@context': 'https://www.w3.org/ns/did/v1',
+            '@context': [
+              'https://www.w3.org/ns/did/v1',
+              'https://ns.did.ai/suites/jws-2020/v1',
+            ],
             id: 'did:example:123',
             controller: 'did:example:456',
           });

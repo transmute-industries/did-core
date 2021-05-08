@@ -14,7 +14,10 @@ describe('Also Known As', () => {
       test('can produce a did document without alsoKnownAs', async () => {
         const didDocument = factory.build({
           entries: {
-            '@context': 'https://www.w3.org/ns/did/v1',
+            '@context': [
+              'https://www.w3.org/ns/did/v1',
+              'https://ns.did.ai/suites/jws-2020/v1',
+            ],
             id: 'did:example:123',
           },
         });
@@ -27,7 +30,10 @@ describe('Also Known As', () => {
       test('can produce a did document with alsoKnownAs', async () => {
         const didDocument = factory.build({
           entries: {
-            '@context': 'https://www.w3.org/ns/did/v1',
+            '@context': [
+              'https://www.w3.org/ns/did/v1',
+              'https://ns.did.ai/suites/jws-2020/v1',
+            ],
             id: 'did:example:123',
             alsoKnownAs: ['https://example.com/user/123'],
           },

@@ -11,7 +11,7 @@ describe('Conformance', () => {
           .build()
           .addRepresentation({ 'application/did+ld+json': representation })
           .assign({
-            '@context': 'https://www.w3.org/ns/did/v1',
+            '@context': ['https://www.w3.org/ns/did/v1'],
             id: 'did:example:123',
           })
           .produce('application/did+ld+json');
@@ -42,13 +42,13 @@ describe('Conformance', () => {
           .consume(
             'application/did+ld+json',
             JSON.stringify({
-              '@context': 'https://www.w3.org/ns/did/v1',
+              '@context': ['https://www.w3.org/ns/did/v1'],
               id: 'did:example:123',
             })
           );
-        expect(didDocument.entries['@context']).toBe(
-          'https://www.w3.org/ns/did/v1'
-        );
+        expect(didDocument.entries['@context']).toEqual([
+          'https://www.w3.org/ns/did/v1',
+        ]);
         expect(didDocument.entries.id).toBe('did:example:123');
       });
 

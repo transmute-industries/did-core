@@ -83,6 +83,7 @@ describe('Production', () => {
             entries: {
               '@context': [
                 'https://www.w3.org/ns/did/v1',
+                'https://ns.did.ai/suites/jws-2020/v1',
                 {
                   string: 'https://example.com/infra/string',
                   boolean: 'https://example.com/infra/boolean',
@@ -111,6 +112,7 @@ describe('Production', () => {
         didDocument = JSON.parse(didDocument.toString());
         expect(didDocument['@context']).toEqual([
           'https://www.w3.org/ns/did/v1',
+          'https://ns.did.ai/suites/jws-2020/v1',
           {
             string: 'https://example.com/infra/string',
             boolean: 'https://example.com/infra/boolean',
@@ -143,24 +145,10 @@ describe('Production', () => {
         const didDocument = await factory
           .build({
             entries: {
-              '@context': 'https://www.w3.org/ns/did/v1',
-              id: 'did:example:123',
-            },
-          })
-          .addRepresentation({
-            'application/did+ld+json': jsonld.representation,
-          })
-          .produce('application/did+ld+json');
-        expect(JSON.parse(didDocument.toString())['@context']).toBe(
-          'https://www.w3.org/ns/did/v1'
-        );
-      });
-
-      test('@context as array', async () => {
-        const didDocument = await factory
-          .build({
-            entries: {
-              '@context': ['https://www.w3.org/ns/did/v1'],
+              '@context': [
+                'https://www.w3.org/ns/did/v1',
+                'https://ns.did.ai/suites/jws-2020/v1',
+              ],
               id: 'did:example:123',
             },
           })
@@ -170,6 +158,28 @@ describe('Production', () => {
           .produce('application/did+ld+json');
         expect(JSON.parse(didDocument.toString())['@context']).toEqual([
           'https://www.w3.org/ns/did/v1',
+          'https://ns.did.ai/suites/jws-2020/v1',
+        ]);
+      });
+
+      test('@context as array', async () => {
+        const didDocument = await factory
+          .build({
+            entries: {
+              '@context': [
+                'https://www.w3.org/ns/did/v1',
+                'https://ns.did.ai/suites/jws-2020/v1',
+              ],
+              id: 'did:example:123',
+            },
+          })
+          .addRepresentation({
+            'application/did+ld+json': jsonld.representation,
+          })
+          .produce('application/did+ld+json');
+        expect(JSON.parse(didDocument.toString())['@context']).toEqual([
+          'https://www.w3.org/ns/did/v1',
+          'https://ns.did.ai/suites/jws-2020/v1',
         ]);
       });
 
@@ -179,6 +189,7 @@ describe('Production', () => {
           .assign({
             '@context': [
               'https://www.w3.org/ns/did/v1',
+              'https://ns.did.ai/suites/jws-2020/v1',
               {
                 '💎': 'https://example.com/infra/string',
               },
@@ -192,6 +203,7 @@ describe('Production', () => {
           .produce('application/did+ld+json');
         expect(JSON.parse(didDocument.toString())['@context']).toEqual([
           'https://www.w3.org/ns/did/v1',
+          'https://ns.did.ai/suites/jws-2020/v1',
           {
             '💎': 'https://example.com/infra/string',
           },
