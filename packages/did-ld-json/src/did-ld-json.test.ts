@@ -49,13 +49,10 @@ it('can produce application/did+ld+json from application/did+json after adding @
   const didDocument = factory
     .build({
       entries: {
-        id: 'did:example:123',
+        ...jsonldFixtures.example1,
       },
     })
-    .addRepresentation(representations)
-    .assign({
-      '@context': 'https://www.w3.org/ns/did/v1',
-    });
+    .addRepresentation(representations);
   const serialization = await didDocument.produce('application/did+ld+json');
   // not the map order does not matter
   expect(JSON.parse(serialization.toString())).toEqual(jsonldFixtures.example1);

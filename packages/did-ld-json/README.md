@@ -12,7 +12,11 @@ import { representation } from '@did-core/did-ld-json';
 
 const didDocument: DidDocument = factory.build({
   entries: {
-    '@context': 'https://www.w3.org/ns/did/v1',
+    '@context': [
+      'https://www.w3.org/ns/did/v1',
+      'https://ns.did.ai/transmute/v1',
+      // this context defines common key types
+    ],
     id: 'did:example:123',
   },
 });

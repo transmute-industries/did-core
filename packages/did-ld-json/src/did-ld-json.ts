@@ -27,6 +27,12 @@ const defaultDocumentLoader = async (
       document: contexts.get(constants.DID_CONTEXT_V1_URL),
     };
   }
+  if (iri === constants.DID_CONTEXT_TRANSMUTE_V1_URL) {
+    return {
+      documentUrl: constants.DID_CONTEXT_TRANSMUTE_V1_URL,
+      document: contexts.get(constants.DID_CONTEXT_TRANSMUTE_V1_URL),
+    };
+  }
   throw new Error('Unsupported iri: ' + iri);
 };
 
