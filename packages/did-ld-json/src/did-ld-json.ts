@@ -10,11 +10,6 @@ import { check } from 'jsonld-checker';
 
 const banned = ['constructor', '__proto__'];
 
-import bbsV1 from './contexts/bls12381-2020-v1.json';
-import jwsV1 from './contexts/jws-2020-v1.json';
-import ed25519V1 from '././contexts/ed25519-2018-v1.json';
-import x25519V1 from './contexts/x25519-2018-v1.json';
-
 const cleaner = (key: any, value: any): void => {
   if (banned.includes(key)) {
     throw new Error('Unsafe json detected.');
@@ -23,47 +18,35 @@ const cleaner = (key: any, value: any): void => {
   }
 };
 
+const defaultSupportedContexts: any = {
+  // did core only defines relationships, not key types...
+  [constants.DID_CONTEXT_V1_URL]: contexts.get(constants.DID_CONTEXT_V1_URL),
+  // our kitchen sink context for common key types
+  [constants.DID_CONTEXT_TRANSMUTE_V1_URL]: contexts.get(
+    constants.DID_CONTEXT_TRANSMUTE_V1_URL
+  ),
+  // specific suite key types
+  [constants.DID_CONTEXT_TRANSMUTE_BLS12381_2020_V1_URL]: contexts.get(
+    constants.DID_CONTEXT_TRANSMUTE_BLS12381_2020_V1_URL
+  ),
+  [constants.DID_CONTEXT_TRANSMUTE_JWS_2020_V1_URL]: contexts.get(
+    constants.DID_CONTEXT_TRANSMUTE_JWS_2020_V1_URL
+  ),
+  [constants.DID_CONTEXT_TRANSMUTE_ED25519_2018_V1_URL]: contexts.get(
+    constants.DID_CONTEXT_TRANSMUTE_ED25519_2018_V1_URL
+  ),
+  [constants.DID_CONTEXT_TRANSMUTE_X25519_2018_V1_URL]: contexts.get(
+    constants.DID_CONTEXT_TRANSMUTE_X25519_2018_V1_URL
+  ),
+};
+
 const defaultDocumentLoader = async (
   iri: string
 ): Promise<{ documentUrl: string; document: any }> => {
-  if (iri === constants.DID_CONTEXT_V1_URL) {
+  if (defaultSupportedContexts[iri]) {
     return {
       documentUrl: iri,
-      document: contexts.get(constants.DID_CONTEXT_V1_URL),
-    };
-  }
-  if (iri === constants.DID_CONTEXT_TRANSMUTE_V1_URL) {
-    return {
-      documentUrl: constants.DID_CONTEXT_TRANSMUTE_V1_URL,
-      document: contexts.get(constants.DID_CONTEXT_TRANSMUTE_V1_URL),
-    };
-  }
-
-  if (iri === 'https://ns.did.ai/suites/bls12381-2020/v1') {
-    return {
-      documentUrl: 'https://ns.did.ai/suites/bls12381-2020/v1',
-      document: bbsV1,
-    };
-  }
-
-  if (iri === 'https://ns.did.ai/suites/jws-2020/v1') {
-    return {
-      documentUrl: 'https://ns.did.ai/suites/jws-2020/v1',
-      document: jwsV1,
-    };
-  }
-
-  if (iri === 'https://ns.did.ai/suites/ed25519-2018/v1') {
-    return {
-      documentUrl: 'https://ns.did.ai/suites/ed25519-2018/v1',
-      document: ed25519V1,
-    };
-  }
-
-  if (iri === 'https://ns.did.ai/suites/x25519-2018/v1') {
-    return {
-      documentUrl: 'https://ns.did.ai/suites/x25519-2018/v1',
-      document: x25519V1,
+      document: defaultSupportedContexts[iri],
     };
   }
 
