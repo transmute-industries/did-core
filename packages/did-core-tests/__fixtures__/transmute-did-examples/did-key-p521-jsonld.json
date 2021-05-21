@@ -1,0 +1,30 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://ns.did.ai/suites/multibase-2021/v1"
+  ],
+  "id": "did:key:zJss7xEQwMCeguBiawQPntnC4DpSgdbZxBLXb15BNT3ZLhMSyhCSUGLZf3U84xsPGtGfBnAKqtd9Sk2eAp4yBXQexiuUStFeitQvZ3as3HzYccdB7GfnRvCCcRp1T5gMTZ3r4TMc5yqihakUc6m4fRL7QCKVbScnqAqcJ3acJsyk5vH7zqvWbYUEr",
+  "verificationMethod": [
+    {
+      "id": "#zJss7xEQwMCeguBiawQPntnC4DpSgdbZxBLXb15BNT3ZLhMSyhCSUGLZf3U84xsPGtGfBnAKqtd9Sk2eAp4yBXQexiuUStFeitQvZ3as3HzYccdB7GfnRvCCcRp1T5gMTZ3r4TMc5yqihakUc6m4fRL7QCKVbScnqAqcJ3acJsyk5vH7zqvWbYUEr",
+      "type": "P521Key2021",
+      "controller": "did:key:zJss7xEQwMCeguBiawQPntnC4DpSgdbZxBLXb15BNT3ZLhMSyhCSUGLZf3U84xsPGtGfBnAKqtd9Sk2eAp4yBXQexiuUStFeitQvZ3as3HzYccdB7GfnRvCCcRp1T5gMTZ3r4TMc5yqihakUc6m4fRL7QCKVbScnqAqcJ3acJsyk5vH7zqvWbYUEr",
+      "publicKeyBase58": "1euR3wBvPhMEiwYC8TUQTjR3diVPgzmfhC9e8F32LchrPyi2zCg7JwYZCgpXBzKhiQkmK8DpQYUKrbjDZBZSFbuvq3Lxg3xMc5JpVMWk7YbzyoJntrLHK5iFg8GEZxSWMLEeKPd94rRSXWswiHJ9YvcwBtzz9qzMNAQsoJLTaVwQaoCyx4uU"
+    }
+  ],
+  "authentication": [
+    "#zJss7xEQwMCeguBiawQPntnC4DpSgdbZxBLXb15BNT3ZLhMSyhCSUGLZf3U84xsPGtGfBnAKqtd9Sk2eAp4yBXQexiuUStFeitQvZ3as3HzYccdB7GfnRvCCcRp1T5gMTZ3r4TMc5yqihakUc6m4fRL7QCKVbScnqAqcJ3acJsyk5vH7zqvWbYUEr"
+  ],
+  "assertionMethod": [
+    "#zJss7xEQwMCeguBiawQPntnC4DpSgdbZxBLXb15BNT3ZLhMSyhCSUGLZf3U84xsPGtGfBnAKqtd9Sk2eAp4yBXQexiuUStFeitQvZ3as3HzYccdB7GfnRvCCcRp1T5gMTZ3r4TMc5yqihakUc6m4fRL7QCKVbScnqAqcJ3acJsyk5vH7zqvWbYUEr"
+  ],
+  "capabilityInvocation": [
+    "#zJss7xEQwMCeguBiawQPntnC4DpSgdbZxBLXb15BNT3ZLhMSyhCSUGLZf3U84xsPGtGfBnAKqtd9Sk2eAp4yBXQexiuUStFeitQvZ3as3HzYccdB7GfnRvCCcRp1T5gMTZ3r4TMc5yqihakUc6m4fRL7QCKVbScnqAqcJ3acJsyk5vH7zqvWbYUEr"
+  ],
+  "capabilityDelegation": [
+    "#zJss7xEQwMCeguBiawQPntnC4DpSgdbZxBLXb15BNT3ZLhMSyhCSUGLZf3U84xsPGtGfBnAKqtd9Sk2eAp4yBXQexiuUStFeitQvZ3as3HzYccdB7GfnRvCCcRp1T5gMTZ3r4TMc5yqihakUc6m4fRL7QCKVbScnqAqcJ3acJsyk5vH7zqvWbYUEr"
+  ],
+  "keyAgreement": [
+    "#zJss7xEQwMCeguBiawQPntnC4DpSgdbZxBLXb15BNT3ZLhMSyhCSUGLZf3U84xsPGtGfBnAKqtd9Sk2eAp4yBXQexiuUStFeitQvZ3as3HzYccdB7GfnRvCCcRp1T5gMTZ3r4TMc5yqihakUc6m4fRL7QCKVbScnqAqcJ3acJsyk5vH7zqvWbYUEr"
+  ]
+}

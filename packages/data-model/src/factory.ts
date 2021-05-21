@@ -13,10 +13,11 @@ export interface DidDocument {
   representations: DidDocumentRepresentations;
   entries: AbstractDataModel<object>;
   assign: (entries: AbstractDataModel<object>) => DidDocument;
-  produce: (contentType: string) => Promise<Buffer>;
+  produce: (contentType: string, documentLoader?: any) => Promise<Buffer>;
   consume: (
     contentType: string,
-    representation: Buffer
+    representation: Buffer,
+    documentLoader?: any
   ) => Promise<DidDocument>;
 }
 
@@ -40,20 +41,28 @@ export const factoryDefaults: DidDocument = {
     return this;
   },
 
-  produce: async function(contentType: string): Promise<Buffer> {
+  produce: async function(
+    contentType: string,
+    documentLoader?: any
+  ): Promise<Buffer> {
     if (this.representations[contentType]) {
-      return this.representations[contentType].produce(this.entries);
+      return (this.representations[contentType] as any).produce(
+        this.entries,
+        documentLoader
+      );
     }
     throw new Error('Cannot produce unsupported content type: ' + contentType);
   },
 
   consume: async function(
     contentType: string,
-    representation: Buffer
+    representation: Buffer,
+    documentLoader?: any
   ): Promise<DidDocument> {
     if (this.representations[contentType]) {
-      this.entries = await this.representations[contentType].consume(
-        representation
+      this.entries = await (this.representations[contentType] as any).consume(
+        representation,
+        documentLoader
       );
       return this;
     }

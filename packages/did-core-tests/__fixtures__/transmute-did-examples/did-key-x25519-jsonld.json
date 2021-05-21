@@ -1,0 +1,16 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/suites/x25519-2019/v1"
+  ],
+  "id": "did:key:z6LSn9Ah7d33uokFv2pg66BMN5UY72WtPE6eFjGXrA4mPcCp",
+  "verificationMethod": [
+    {
+      "id": "#z6LSn9Ah7d33uokFv2pg66BMN5UY72WtPE6eFjGXrA4mPcCp",
+      "type": "X25519KeyAgreementKey2019",
+      "controller": "did:key:z6LSn9Ah7d33uokFv2pg66BMN5UY72WtPE6eFjGXrA4mPcCp",
+      "publicKeyBase58": "BTzXbKEBpM2WpeSuZSfQ3VG4FsymgcvVNkYrMhREgES4"
+    }
+  ],
+  "keyAgreement": ["#z6LSn9Ah7d33uokFv2pg66BMN5UY72WtPE6eFjGXrA4mPcCp"]
+}
