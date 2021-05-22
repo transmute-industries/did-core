@@ -1,7 +1,7 @@
 {
   "@context": [
     "https://www.w3.org/ns/did/v1",
-    "https://ns.did.ai/suites/multibase-2021/v1"
+    "https://ns.did.ai/suites/multikey-2021/v1"
   ],
   "id": "did:key:zACHdCArvro31A591h98nMQa7WSJnLBeP2sF3WfntFz3F9cYuwAH49nBEQBmPvKP5rzsNLBZ4fF1N4E1Vh76qq79PLy1RjTrHuakwvZkvK7qsmKbXuMTEmhcnjbcU5UFaxmvKAC9",
   "verificationMethod": [
