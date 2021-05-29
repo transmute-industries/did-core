@@ -1,0 +1,35 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/suites/jws-2020/v1"
+  ],
+  "id": "did:key:zJss7xEQwMCeguBiawQPntnC4DpSgdbZxBLXb15BNT3ZLhMSyhCSUGLZf3U84xsPGtGfBnAKqtd9Sk2eAp4yBXQexiuUStFeitQvZ3as3HzYccdB7GfnRvCCcRp1T5gMTZ3r4TMc5yqihakUc6m4fRL7QCKVbScnqAqcJ3acJsyk5vH7zqvWbYUEr",
+  "verificationMethod": [
+    {
+      "id": "#zJss7xEQwMCeguBiawQPntnC4DpSgdbZxBLXb15BNT3ZLhMSyhCSUGLZf3U84xsPGtGfBnAKqtd9Sk2eAp4yBXQexiuUStFeitQvZ3as3HzYccdB7GfnRvCCcRp1T5gMTZ3r4TMc5yqihakUc6m4fRL7QCKVbScnqAqcJ3acJsyk5vH7zqvWbYUEr",
+      "type": "JsonWebKey2020",
+      "controller": "did:key:zJss7xEQwMCeguBiawQPntnC4DpSgdbZxBLXb15BNT3ZLhMSyhCSUGLZf3U84xsPGtGfBnAKqtd9Sk2eAp4yBXQexiuUStFeitQvZ3as3HzYccdB7GfnRvCCcRp1T5gMTZ3r4TMc5yqihakUc6m4fRL7QCKVbScnqAqcJ3acJsyk5vH7zqvWbYUEr",
+      "publicKeyJwk": {
+        "kty": "EC",
+        "crv": "P-521",
+        "x": "APnYEpTgLtAW9p206zlHdl_twbNIi0TlhI6gpnp3LVqdOdeiCcnpvhCIb1o9OiHugccN1fIZ6zJ6A6yjOspPnP7_",
+        "y": "AFwAJijgrwEGNSN4HJ-nrlJwX0X0dnKRuarotKUOd4U-capZ65C-CfTAC84i32kogsk8jCSyL1P1eO4d0ajnpgBH"
+      }
+    }
+  ],
+  "authentication": [
+    "#zJss7xEQwMCeguBiawQPntnC4DpSgdbZxBLXb15BNT3ZLhMSyhCSUGLZf3U84xsPGtGfBnAKqtd9Sk2eAp4yBXQexiuUStFeitQvZ3as3HzYccdB7GfnRvCCcRp1T5gMTZ3r4TMc5yqihakUc6m4fRL7QCKVbScnqAqcJ3acJsyk5vH7zqvWbYUEr"
+  ],
+  "assertionMethod": [
+    "#zJss7xEQwMCeguBiawQPntnC4DpSgdbZxBLXb15BNT3ZLhMSyhCSUGLZf3U84xsPGtGfBnAKqtd9Sk2eAp4yBXQexiuUStFeitQvZ3as3HzYccdB7GfnRvCCcRp1T5gMTZ3r4TMc5yqihakUc6m4fRL7QCKVbScnqAqcJ3acJsyk5vH7zqvWbYUEr"
+  ],
+  "capabilityInvocation": [
+    "#zJss7xEQwMCeguBiawQPntnC4DpSgdbZxBLXb15BNT3ZLhMSyhCSUGLZf3U84xsPGtGfBnAKqtd9Sk2eAp4yBXQexiuUStFeitQvZ3as3HzYccdB7GfnRvCCcRp1T5gMTZ3r4TMc5yqihakUc6m4fRL7QCKVbScnqAqcJ3acJsyk5vH7zqvWbYUEr"
+  ],
+  "capabilityDelegation": [
+    "#zJss7xEQwMCeguBiawQPntnC4DpSgdbZxBLXb15BNT3ZLhMSyhCSUGLZf3U84xsPGtGfBnAKqtd9Sk2eAp4yBXQexiuUStFeitQvZ3as3HzYccdB7GfnRvCCcRp1T5gMTZ3r4TMc5yqihakUc6m4fRL7QCKVbScnqAqcJ3acJsyk5vH7zqvWbYUEr"
+  ],
+  "keyAgreement": [
+    "#zJss7xEQwMCeguBiawQPntnC4DpSgdbZxBLXb15BNT3ZLhMSyhCSUGLZf3U84xsPGtGfBnAKqtd9Sk2eAp4yBXQexiuUStFeitQvZ3as3HzYccdB7GfnRvCCcRp1T5gMTZ3r4TMc5yqihakUc6m4fRL7QCKVbScnqAqcJ3acJsyk5vH7zqvWbYUEr"
+  ]
+}

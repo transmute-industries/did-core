@@ -1,0 +1,24 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/suites/secp256k1-2019/v1"
+  ],
+  "id": "did:key:zQ3shwNhfEjorJrrKpqvBvNRV35NfGmVWdx2rNmQCRR58Sfpf",
+  "verificationMethod": [
+    {
+      "id": "#zQ3shwNhfEjorJrrKpqvBvNRV35NfGmVWdx2rNmQCRR58Sfpf",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:key:zQ3shwNhfEjorJrrKpqvBvNRV35NfGmVWdx2rNmQCRR58Sfpf",
+      "publicKeyBase58": "2BRYePbLNzDdSakEmYHYSDV1Dd1JYMPzKSqeQ85Q1EBxw"
+    }
+  ],
+  "authentication": ["#zQ3shwNhfEjorJrrKpqvBvNRV35NfGmVWdx2rNmQCRR58Sfpf"],
+  "assertionMethod": ["#zQ3shwNhfEjorJrrKpqvBvNRV35NfGmVWdx2rNmQCRR58Sfpf"],
+  "capabilityInvocation": [
+    "#zQ3shwNhfEjorJrrKpqvBvNRV35NfGmVWdx2rNmQCRR58Sfpf"
+  ],
+  "capabilityDelegation": [
+    "#zQ3shwNhfEjorJrrKpqvBvNRV35NfGmVWdx2rNmQCRR58Sfpf"
+  ],
+  "keyAgreement": ["#zQ3shwNhfEjorJrrKpqvBvNRV35NfGmVWdx2rNmQCRR58Sfpf"]
+}
