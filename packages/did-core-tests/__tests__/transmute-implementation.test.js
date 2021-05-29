@@ -4,6 +4,8 @@ const axios = require('axios');
 
 const examples = require('../__fixtures__/transmute-did-examples');
 
+jest.setTimeout(1 * 60 * 1000);
+
 const documentLoader = async (iri) => {
   try {
     const { data } = await axios.get(iri, {
