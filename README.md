@@ -24,6 +24,26 @@ const representation: Buffer = await didDocument
   .produce('application/did+ld+json');
 ```
 
+## Usage with JOSE
+
+```ts
+import { factory, DidDocument } from '@did-core/data-model';
+import { representation } from '@did-core/did-json';
+
+const didDocument: DidDocument = factory.build({
+  entries: {
+    // @context is required for use with jsonld verifiable credentials
+    // but technically optional here
+    '@context': 'https://www.w3.org/ns/did/v1',
+    id: 'did:example:123',
+  },
+});
+
+const representation: Buffer = await didDocument
+  .addRepresentation({ 'application/did+json': representation })
+  .produce('application/did+json');
+```
+
 ## Usage with IPLD
 
 ```ts
@@ -44,22 +64,13 @@ const representation: Buffer = await didDocument
   .produce('application/did+dag+cbor');
 ```
 
-## Usage with JOSE
+### DID Test Suite
 
-```ts
-import { factory, DidDocument } from '@did-core/data-model';
-import { representation } from '@did-core/did-json';
+This module is used to produce test fixtures for the did core test suite.
 
-const didDocument: DidDocument = factory.build({
-  entries: {
-    // @context is required for use with jsonld verifiable credentials
-    // but technically optional here
-    '@context': 'https://www.w3.org/ns/did/v1',
-    id: 'did:example:123',
-  },
-});
+The DID Method implementations used for these tests are hosted in the following repos:
 
-const representation: Buffer = await didDocument
-  .addRepresentation({ 'application/did+json': representation })
-  .produce('application/did+json');
-```
+- [did:elem][https://github.com/transmute-industries/sidetree.js]
+- [did:photon][https://github.com/transmute-industries/sidetree.js]
+- [did:key][https://github.com/transmute-industries/did-key.js]
+- [did:web][https://github.com/transmute-industries/verifable-data]
