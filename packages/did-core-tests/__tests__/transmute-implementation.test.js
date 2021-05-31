@@ -47,8 +47,8 @@ describe('Transmute Implementation Examples', () => {
         );
         expect(JSON.parse(didDocumentStream.toString())).toEqual(didDocument);
       } catch (e) {
-        console.error(didDocument.id);
-        console.error(e);
+        // eslint-disable-next-line no-console
+        console.error(didDocument.id, e);
         throw e;
       }
     });
