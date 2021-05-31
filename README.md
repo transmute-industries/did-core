@@ -70,7 +70,7 @@ This module is used to produce test fixtures for the did core test suite.
 
 The DID Method implementations used for these tests are hosted in the following repos:
 
-- [did:elem][https://github.com/transmute-industries/sidetree.js]
-- [did:photon][https://github.com/transmute-industries/sidetree.js]
-- [did:key][https://github.com/transmute-industries/did-key.js]
-- [did:web][https://github.com/transmute-industries/verifable-data]
+- [did:elem](https://github.com/transmute-industries/sidetree.js)
+- [did:photon](https://github.com/transmute-industries/sidetree.js)
+- [did:key](https://github.com/transmute-industries/did-key.js)
+- [did:web](https://github.com/transmute-industries/verifable-data)
