@@ -111,7 +111,7 @@ describe('W3C DID Test Suite Transmute Implementations', () => {
           // we choose to suppport JWK and did+json as the default for our implementations.
           if (didDocument.verificationMethod[0].type === 'JsonWebKey2020') {
             didMethodFixture[didDocument.id].didDocumentDataModel = {
-              ...parsedDidDocumentStreamWithoutContext,
+              properties: parsedDidDocumentStreamWithoutContext,
             };
           }
 
@@ -137,17 +137,29 @@ describe('W3C DID Test Suite Transmute Implementations', () => {
         // did:web, did:elem, did:photon all produce did+json that is valid did+ld+json.
         // update the fixtures accordinging.
         if (!didMethodFixture[didDocument.id]['application/did+ld+json']) {
-          didMethodFixture[didDocument.id]['application/did+ld+json'] =
-            didMethodFixture[didDocument.id]['application/did+json'];
+          didMethodFixture[didDocument.id][
+            'application/did+ld+json'
+          ] = JSON.parse(
+            JSON.stringify(
+              didMethodFixture[didDocument.id]['application/did+json']
+            )
+          );
+
           didMethodFixture[didDocument.id][
             'application/did+ld+json'
           ].didResolutionMetadata = {
             contentType: 'application/did+ld+json',
           };
+
+          didMethodFixture[didDocument.id][
+            'application/did+json'
+          ].didResolutionMetadata = {
+            contentType: 'application/did+json',
+          };
         }
       } catch (e) {
-        console.error(didDocument.id);
-        console.error(e);
+        // eslint-disable-next-line no-console
+        console.error(didDocument.id, e);
         throw e;
       }
     });
