@@ -3,28 +3,28 @@
     "https://www.w3.org/ns/did/v1",
     "https://w3id.org/security/suites/multikey-2021/v1"
   ],
-  "id": "did:key:zXwpAQhSbCmPMVo61UAFgJjiek6t2WGJ5PMdXT5gGRYRHtyzFmxbDpQjjX5PmTT7LYKv67h8GGh2sH87ciSCCE4X5Bx4",
+  "id": "did:key:zDnaerx9CtbPJ1q36T5Ln5wYt3MQYeGRG5ehnPAmxcf5mDZpv",
   "verificationMethod": [
     {
-      "id": "#zXwpAQhSbCmPMVo61UAFgJjiek6t2WGJ5PMdXT5gGRYRHtyzFmxbDpQjjX5PmTT7LYKv67h8GGh2sH87ciSCCE4X5Bx4",
+      "id": "did:key:zDnaerx9CtbPJ1q36T5Ln5wYt3MQYeGRG5ehnPAmxcf5mDZpv#zDnaerx9CtbPJ1q36T5Ln5wYt3MQYeGRG5ehnPAmxcf5mDZpv",
       "type": "P256Key2021",
-      "controller": "did:key:zXwpAQhSbCmPMVo61UAFgJjiek6t2WGJ5PMdXT5gGRYRHtyzFmxbDpQjjX5PmTT7LYKv67h8GGh2sH87ciSCCE4X5Bx4",
-      "publicKeyBase58": "2Amm26ss9jHCtvXshjeTSVxHwBuMtwyGxfFn28Fsu8EyWwjEH7xvLU3C5kwAQYDRvrdANpzikZpftMd6oRXzGKDS"
+      "controller": "did:key:zDnaerx9CtbPJ1q36T5Ln5wYt3MQYeGRG5ehnPAmxcf5mDZpv",
+      "publicKeyBase58": "23youFZZdHMVdpv28DRSWP2zJbTJ8KHBeSKUX3qVqqnmp"
     }
   ],
-  "authentication": [
-    "#zXwpAQhSbCmPMVo61UAFgJjiek6t2WGJ5PMdXT5gGRYRHtyzFmxbDpQjjX5PmTT7LYKv67h8GGh2sH87ciSCCE4X5Bx4"
-  ],
   "assertionMethod": [
-    "#zXwpAQhSbCmPMVo61UAFgJjiek6t2WGJ5PMdXT5gGRYRHtyzFmxbDpQjjX5PmTT7LYKv67h8GGh2sH87ciSCCE4X5Bx4"
+    "did:key:zDnaerx9CtbPJ1q36T5Ln5wYt3MQYeGRG5ehnPAmxcf5mDZpv#zDnaerx9CtbPJ1q36T5Ln5wYt3MQYeGRG5ehnPAmxcf5mDZpv"
+  ],
+  "authentication": [
+    "did:key:zDnaerx9CtbPJ1q36T5Ln5wYt3MQYeGRG5ehnPAmxcf5mDZpv#zDnaerx9CtbPJ1q36T5Ln5wYt3MQYeGRG5ehnPAmxcf5mDZpv"
   ],
   "capabilityInvocation": [
-    "#zXwpAQhSbCmPMVo61UAFgJjiek6t2WGJ5PMdXT5gGRYRHtyzFmxbDpQjjX5PmTT7LYKv67h8GGh2sH87ciSCCE4X5Bx4"
+    "did:key:zDnaerx9CtbPJ1q36T5Ln5wYt3MQYeGRG5ehnPAmxcf5mDZpv#zDnaerx9CtbPJ1q36T5Ln5wYt3MQYeGRG5ehnPAmxcf5mDZpv"
   ],
   "capabilityDelegation": [
-    "#zXwpAQhSbCmPMVo61UAFgJjiek6t2WGJ5PMdXT5gGRYRHtyzFmxbDpQjjX5PmTT7LYKv67h8GGh2sH87ciSCCE4X5Bx4"
+    "did:key:zDnaerx9CtbPJ1q36T5Ln5wYt3MQYeGRG5ehnPAmxcf5mDZpv#zDnaerx9CtbPJ1q36T5Ln5wYt3MQYeGRG5ehnPAmxcf5mDZpv"
   ],
   "keyAgreement": [
-    "#zXwpAQhSbCmPMVo61UAFgJjiek6t2WGJ5PMdXT5gGRYRHtyzFmxbDpQjjX5PmTT7LYKv67h8GGh2sH87ciSCCE4X5Bx4"
+    "did:key:zDnaerx9CtbPJ1q36T5Ln5wYt3MQYeGRG5ehnPAmxcf5mDZpv#zDnaerx9CtbPJ1q36T5Ln5wYt3MQYeGRG5ehnPAmxcf5mDZpv"
   ]
 }

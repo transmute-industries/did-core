@@ -6,13 +6,15 @@
       "@base": "did:web:did.actor:mike",
       "rating": "https://schema.org/Rating",
       "publicAccess": "https://schema.org/publicAccess",
-      "additionalType": "https://schema.org/additionalType"
+      "additionalType": "https://schema.org/additionalType",
+      "lastCheckpoint": "https://schema.org/Date"
     }
   ],
   "id": "did:web:did.actor:mike",
   "rating": 4.5,
   "publicAccess": true,
   "additionalType": null,
+  "lastCheckpoint": "2012-04-23T18:25:43.511Z",
   "verificationMethod": [
     {
       "id": "#g1",
