@@ -52,6 +52,6 @@
   ],
   "dependencies": {
     "@transmute/did-context": "^0.6.1-unstable.25",
-    "jsonld-checker": "^0.1.6"
+    "jsonld-checker": "^0.1.8"
   }
 }
